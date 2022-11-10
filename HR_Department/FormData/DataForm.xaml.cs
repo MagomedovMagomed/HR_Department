@@ -26,10 +26,37 @@ namespace HR_Department.FormData
         {
             InitializeComponent();
 
-            
+            AppContent.Model1 = new ApplicantEntities1();
+            Filtr.Items.Add("Все типы");
+            foreach (var i in AppContent.Model1.Post)
+            {
+                Filtr.Items.Add(i.Name_post);
+            }
+            Sort.Items.Add("Без сортировки");
+            Sort.Items.Add("По возрастанию");
+            Sort.Items.Add("По убыванию");
+            Sort.SelectedIndex = 0;
+            Filtr.SelectedIndex = 0;
 
             var _currentAppl = ApplicantEntities1.GetContext().Applicant.ToList();
             Applicant.ItemsSource = _currentAppl;
+            UpdateApplicant();
         }
+
+        public void UpdateApplicant()
+        {
+            var CurrentAgent = ApplicantEntities1.GetContext().Applicant.ToList();
+
+            if (Filtr.SelectedIndex > 0)
+            {
+                var test = Filtr.SelectedItem.ToString();
+                CurrentAgent = CurrentAgent.Where(p => p.Post.Name_post == Filtr.SelectedItem.ToString()).ToList();
+            }
+
+            CurrentAgent = CurrentAgent.Where(p => p.Surename_applicant.ToLower().Contains(Search.Text.ToLower())).ToList();
+
+            Applicant.ItemsSource = CurrentAgent.OrderBy(p => p.Surename_applicant).ToList();
+        }
+
     }
 }

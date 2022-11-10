@@ -9,7 +9,7 @@
       Title="DataForm">
 
     <Grid Background="#FF015666">
-        <StackPanel Orientation="Horizontal" Margin="0,0,2,386">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="800">
             <TextBlock Name="Search" Width="150" Height="20" Background="White" Margin="30 0 0 0"/>
             <ComboBox Height="20" Name="Filtr" Width="150" Margin="110 0 0 0"/>
             <ComboBox Height="20" Width="150" Name="Sort" Margin="110 0 0 0"/>
