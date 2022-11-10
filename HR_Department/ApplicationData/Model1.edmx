@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ApplicantModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="id_applicant" />
+          </Key>
+          <Property Name="id_applicant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surename_applicant" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name_applicant" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname_applicant" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephon" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="SNILS" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="E_mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date_of_the_interview" Type="date" Nullable="false" />
+          <Property Name="id_post" Type="int" Nullable="false" />
+          <Property Name="documents_education" Type="bit" />
+          <Property Name="Cover_letter" Type="nvarchar" MaxLength="255" />
+          <Property Name="Id_substation" Type="int" />
+          <Property Name="Note" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_the_result_of_the_meeting" Type="int" />
+          <Property Name="Where_by_whom_experience" Type="nvarchar" MaxLength="255" />
+          <Property Name="Chek_document_education" Type="bit" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_post" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="id_staff" />
+          </Key>
+          <Property Name="id_staff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surename_staff" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name_staff" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname_staff" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_post_staff" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Substation">
+          <Key>
+            <PropertyRef Name="id_substation" />
+          </Key>
+          <Property Name="id_substation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_substation" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="The_result_of_the_meeting">
+          <Key>
+            <PropertyRef Name="id_the_result_of_the_meeting" />
+          </Key>
+          <Property Name="id_the_result_of_the_meeting" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_the_result_of_the_meeting" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="id_staff" Type="int" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_status" Type="int" />
+          <Property Name="id_tg" Type="int" />
+        </EntityType>
+        <Association Name="FK_Applicant_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="id_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Applicant_Substation">
+          <End Role="Substation" Type="Self.Substation" Multiplicity="0..1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Substation">
+              <PropertyRef Name="id_substation" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="Id_substation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Applicant_The_result_of_the_meeting">
+          <End Role="The_result_of_the_meeting" Type="Self.The_result_of_the_meeting" Multiplicity="0..1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="The_result_of_the_meeting">
+              <PropertyRef Name="id_the_result_of_the_meeting" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="id_the_result_of_the_meeting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="id_post_staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="id_staff" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="id_staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ApplicantModelContainer">
+          <EntitySet Name="Applicant" EntityType="Self.Applicant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Substation" EntityType="Self.Substation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="The_result_of_the_meeting" EntityType="Self.The_result_of_the_meeting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Applicant_Post" Association="Self.FK_Applicant_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Applicant_Substation" Association="Self.FK_Applicant_Substation">
+            <End Role="Substation" EntitySet="Substation" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Applicant_The_result_of_the_meeting" Association="Self.FK_Applicant_The_result_of_the_meeting">
+            <End Role="The_result_of_the_meeting" EntitySet="The_result_of_the_meeting" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Post" Association="Self.FK_Staff_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Staff" Association="Self.FK_User_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ApplicantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Applicant">
+          <Key>
+            <PropertyRef Name="id_applicant" />
+          </Key>
+          <Property Name="id_applicant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surename_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lastname_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephon" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SNILS" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="E_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_of_the_interview" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_post" Type="Int32" Nullable="false" />
+          <Property Name="documents_education" Type="Boolean" />
+          <Property Name="Cover_letter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Id_substation" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_the_result_of_the_meeting" Type="Int32" />
+          <Property Name="Where_by_whom_experience" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Chek_document_education" Type="Boolean" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Applicant_Post" FromRole="Applicant" ToRole="Post" />
+          <NavigationProperty Name="Substation" Relationship="Self.FK_Applicant_Substation" FromRole="Applicant" ToRole="Substation" />
+          <NavigationProperty Name="The_result_of_the_meeting" Relationship="Self.FK_Applicant_The_result_of_the_meeting" FromRole="Applicant" ToRole="The_result_of_the_meeting" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="id_post" />
+          </Key>
+          <Property Name="id_post" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_post" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_Post" FromRole="Post" ToRole="Applicant" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Staff_Post" FromRole="Post" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id_role" />
+          </Key>
+          <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="id_staff" />
+          </Key>
+          <Property Name="id_staff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surename_staff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name_staff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lastname_staff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_post_staff" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Staff_Post" FromRole="Staff" ToRole="Post" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Staff" FromRole="Staff" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Substation">
+          <Key>
+            <PropertyRef Name="id_substation" />
+          </Key>
+          <Property Name="id_substation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_substation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_Substation" FromRole="Substation" ToRole="Applicant" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="The_result_of_the_meeting">
+          <Key>
+            <PropertyRef Name="id_the_result_of_the_meeting" />
+          </Key>
+          <Property Name="id_the_result_of_the_meeting" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_the_result_of_the_meeting" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_The_result_of_the_meeting" FromRole="The_result_of_the_meeting" ToRole="Applicant" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id_user" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="id_staff" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_status" Type="Int32" />
+          <Property Name="id_tg" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_User_Staff" FromRole="User" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_Applicant_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="id_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Applicant_Substation">
+          <End Role="Substation" Type="Self.Substation" Multiplicity="0..1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Substation">
+              <PropertyRef Name="id_substation" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="Id_substation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Applicant_The_result_of_the_meeting">
+          <End Role="The_result_of_the_meeting" Type="Self.The_result_of_the_meeting" Multiplicity="0..1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="The_result_of_the_meeting">
+              <PropertyRef Name="id_the_result_of_the_meeting" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="id_the_result_of_the_meeting" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="id_post" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="id_post_staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id_role" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="id_role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="id_staff" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="id_staff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ApplicantEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applicant" EntityType="Self.Applicant" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" />
+          <EntitySet Name="Substation" EntityType="Self.Substation" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="The_result_of_the_meeting" EntityType="Self.The_result_of_the_meeting" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Applicant_Post" Association="Self.FK_Applicant_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Applicant_Substation" Association="Self.FK_Applicant_Substation">
+            <End Role="Substation" EntitySet="Substation" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Applicant_The_result_of_the_meeting" Association="Self.FK_Applicant_The_result_of_the_meeting">
+            <End Role="The_result_of_the_meeting" EntitySet="The_result_of_the_meeting" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Post" Association="Self.FK_Staff_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Staff" Association="Self.FK_User_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ApplicantModelContainer" CdmEntityContainer="ApplicantEntities1">
+          <EntitySetMapping Name="Applicant">
+            <EntityTypeMapping TypeName="ApplicantModel.Applicant">
+              <MappingFragment StoreEntitySet="Applicant">
+                <ScalarProperty Name="id_applicant" ColumnName="id_applicant" />
+                <ScalarProperty Name="Surename_applicant" ColumnName="Surename_applicant" />
+                <ScalarProperty Name="Name_applicant" ColumnName="Name_applicant" />
+                <ScalarProperty Name="Lastname_applicant" ColumnName="Lastname_applicant" />
+                <ScalarProperty Name="Telephon" ColumnName="Telephon" />
+                <ScalarProperty Name="SNILS" ColumnName="SNILS" />
+                <ScalarProperty Name="E_mail" ColumnName="E_mail" />
+                <ScalarProperty Name="Date_of_the_interview" ColumnName="Date_of_the_interview" />
+                <ScalarProperty Name="id_post" ColumnName="id_post" />
+                <ScalarProperty Name="documents_education" ColumnName="documents_education" />
+                <ScalarProperty Name="Cover_letter" ColumnName="Cover_letter" />
+                <ScalarProperty Name="Id_substation" ColumnName="Id_substation" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="id_the_result_of_the_meeting" ColumnName="id_the_result_of_the_meeting" />
+                <ScalarProperty Name="Where_by_whom_experience" ColumnName="Where_by_whom_experience" />
+                <ScalarProperty Name="Chek_document_education" ColumnName="Chek_document_education" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="ApplicantModel.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="id_post" ColumnName="id_post" />
+                <ScalarProperty Name="Name_post" ColumnName="Name_post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="ApplicantModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="Name_role" ColumnName="Name_role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staff">
+            <EntityTypeMapping TypeName="ApplicantModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="id_staff" ColumnName="id_staff" />
+                <ScalarProperty Name="Surename_staff" ColumnName="Surename_staff" />
+                <ScalarProperty Name="Name_staff" ColumnName="Name_staff" />
+                <ScalarProperty Name="Lastname_staff" ColumnName="Lastname_staff" />
+                <ScalarProperty Name="id_post_staff" ColumnName="id_post_staff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Substation">
+            <EntityTypeMapping TypeName="ApplicantModel.Substation">
+              <MappingFragment StoreEntitySet="Substation">
+                <ScalarProperty Name="id_substation" ColumnName="id_substation" />
+                <ScalarProperty Name="Name_substation" ColumnName="Name_substation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ApplicantModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="The_result_of_the_meeting">
+            <EntityTypeMapping TypeName="ApplicantModel.The_result_of_the_meeting">
+              <MappingFragment StoreEntitySet="The_result_of_the_meeting">
+                <ScalarProperty Name="id_the_result_of_the_meeting" ColumnName="id_the_result_of_the_meeting" />
+                <ScalarProperty Name="Name_the_result_of_the_meeting" ColumnName="Name_the_result_of_the_meeting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ApplicantModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="id_staff" ColumnName="id_staff" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_status" ColumnName="user_status" />
+                <ScalarProperty Name="id_tg" ColumnName="id_tg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
