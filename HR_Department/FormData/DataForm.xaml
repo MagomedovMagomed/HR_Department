@@ -10,11 +10,11 @@
 
     <Grid Background="#FF015666">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="800">
-            <TextBlock Name="Search" Width="150" Height="20" Background="White" Margin="30 0 0 0"/>
-            <ComboBox Height="20" Name="Filtr" Width="150" Margin="110 0 0 0"/>
-            <ComboBox Height="20" Width="150" Name="Sort" Margin="110 0 0 0"/>
+            <TextBox Name="Search" TextChanged="Search_TextChanged" Width="150" Height="20" Background="White" Margin="30 0 0 0"/>
+            <ComboBox SelectionChanged="Filtr_SelectionChanged" Height="25" Name="Filtr" Width="150" Margin="110 0 0 0"/>
+            <ComboBox SelectionChanged="Sort_SelectionChanged" Height="25" Width="150" Name="Sort" Margin="110 0 0 0"/>
         </StackPanel>
-        <ListView Name="Applicant" Margin="0,64,0,0" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView Name="Applic" VirtualizingPanel.ScrollUnit="Pixel" Margin="0,64,0,60" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -29,14 +29,19 @@
                             <RowDefinition Height="100*"></RowDefinition>
                             <RowDefinition Height="100*"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Width="auto" Margin="0 0 3 0" Text="{Binding Surename_applicant}"></TextBlock>
-                        <TextBlock Grid.Row="0" Grid.Column="1" Width="auto" Margin="0 0 3 0" Text="{Binding Name_applicant}"></TextBlock>
-                        <TextBlock Grid.Row="0" Grid.Column="2" Width="auto" Margin="0 0 3 0" Text="{Binding Lastname_applicant}"></TextBlock>
-                        <TextBlock Text="{Binding Post.Name_post}" Width="auto" Grid.Column="4" Grid.Row="0"></TextBlock>
-                        <TextBlock Text="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" Width="auto" Grid.ColumnSpan="3" Grid.Row="1"></TextBlock>
+                        <TextBlock FontSize="22" Grid.Row="0" Grid.Column="0" Width="auto" Margin="0 0 3 0" Text="{Binding Surename_applicant}"></TextBlock>
+                        <TextBlock FontSize="22" Grid.Row="0" Grid.Column="1" Width="auto" Margin="0 0 3 0" Text="{Binding Name_applicant}"></TextBlock>
+                        <TextBlock FontSize="22" Grid.Row="0" Grid.Column="2" Width="auto" Margin="0 0 3 0" Text="{Binding Lastname_applicant}"></TextBlock>
+                        <TextBlock FontSize="22" Grid.Row="0" Grid.Column="4" Width="auto" Text="{Binding Post.Name_post}"></TextBlock>
+                        <TextBlock FontSize="22" Grid.Row="1" Grid.ColumnSpan="3" Width="auto" Text="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" ></TextBlock>
+                        <StackPanel Grid.Row="1"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="800">
+            <Button Name="Del" HorizontalAlignment="Center" Click="Del_Click" Margin="75 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Удалить"/>
+            <Button Name="Add" HorizontalAlignment="Center" Click="Add_Click" Margin="450 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Добавить"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -17,10 +17,11 @@ namespace HR_Department.ApplicationData
         public int id_user { get; set; }
         public int id_role { get; set; }
         public int id_staff { get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
-        public Nullable<int> user_status { get; set; }
         public Nullable<int> id_tg { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public Nullable<int> User_status { get; set; }
+        public string Email_user { get; set; }
     
         public virtual Role Role { get; set; }
         public virtual Staff Staff { get; set; }

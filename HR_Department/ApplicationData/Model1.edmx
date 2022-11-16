@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ApplicantModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище ApplicantModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="id_applicant" />
@@ -15,7 +15,7 @@
           <Property Name="Lastname_applicant" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Telephon" Type="numeric" Precision="18" Scale="0" />
           <Property Name="SNILS" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="E_mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Date_of_the_interview" Type="date" Nullable="false" />
           <Property Name="id_post" Type="int" Nullable="false" />
           <Property Name="documents_education" Type="bit" />
@@ -24,7 +24,6 @@
           <Property Name="Note" Type="nvarchar" MaxLength="255" />
           <Property Name="id_the_result_of_the_meeting" Type="int" />
           <Property Name="Where_by_whom_experience" Type="nvarchar" MaxLength="255" />
-          <Property Name="Chek_document_education" Type="bit" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -81,10 +80,11 @@
           <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_role" Type="int" Nullable="false" />
           <Property Name="id_staff" Type="int" Nullable="false" />
-          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="user_status" Type="int" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_status" Type="int" />
           <Property Name="id_tg" Type="int" />
+          <Property Name="Email_user" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_Applicant_Post">
           <End Role="Post" Type="Self.Post" Multiplicity="1" />
@@ -192,8 +192,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ApplicantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -207,7 +206,6 @@
           <Property Name="Lastname_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Telephon" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="SNILS" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="E_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date_of_the_interview" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="id_post" Type="Int32" Nullable="false" />
           <Property Name="documents_education" Type="Boolean" />
@@ -216,10 +214,10 @@
           <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="id_the_result_of_the_meeting" Type="Int32" />
           <Property Name="Where_by_whom_experience" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Chek_document_education" Type="Boolean" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Applicant_Post" FromRole="Applicant" ToRole="Post" />
           <NavigationProperty Name="Substation" Relationship="Self.FK_Applicant_Substation" FromRole="Applicant" ToRole="Substation" />
           <NavigationProperty Name="The_result_of_the_meeting" Relationship="Self.FK_Applicant_The_result_of_the_meeting" FromRole="Applicant" ToRole="The_result_of_the_meeting" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -283,12 +281,13 @@
           <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_role" Type="Int32" Nullable="false" />
           <Property Name="id_staff" Type="Int32" Nullable="false" />
-          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="user_status" Type="Int32" />
           <Property Name="id_tg" Type="Int32" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_User_Staff" FromRole="User" ToRole="Staff" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_status" Type="Int32" />
+          <Property Name="Email_user" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Applicant_Post">
           <End Role="Post" Type="Self.Post" Multiplicity="1" />
@@ -362,7 +361,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ApplicantEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ApplicantEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applicant" EntityType="Self.Applicant" />
           <EntitySet Name="Post" EntityType="Self.Post" />
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -401,17 +400,17 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ApplicantModelContainer" CdmEntityContainer="ApplicantEntities1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ApplicantModelContainer" CdmEntityContainer="ApplicantEntities2">
           <EntitySetMapping Name="Applicant">
             <EntityTypeMapping TypeName="ApplicantModel.Applicant">
               <MappingFragment StoreEntitySet="Applicant">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="id_applicant" ColumnName="id_applicant" />
                 <ScalarProperty Name="Surename_applicant" ColumnName="Surename_applicant" />
                 <ScalarProperty Name="Name_applicant" ColumnName="Name_applicant" />
                 <ScalarProperty Name="Lastname_applicant" ColumnName="Lastname_applicant" />
                 <ScalarProperty Name="Telephon" ColumnName="Telephon" />
                 <ScalarProperty Name="SNILS" ColumnName="SNILS" />
-                <ScalarProperty Name="E_mail" ColumnName="E_mail" />
                 <ScalarProperty Name="Date_of_the_interview" ColumnName="Date_of_the_interview" />
                 <ScalarProperty Name="id_post" ColumnName="id_post" />
                 <ScalarProperty Name="documents_education" ColumnName="documents_education" />
@@ -420,7 +419,6 @@
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="id_the_result_of_the_meeting" ColumnName="id_the_result_of_the_meeting" />
                 <ScalarProperty Name="Where_by_whom_experience" ColumnName="Where_by_whom_experience" />
-                <ScalarProperty Name="Chek_document_education" ColumnName="Chek_document_education" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -481,12 +479,13 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="ApplicantModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Email_user" ColumnName="Email_user" />
+                <ScalarProperty Name="User_status" ColumnName="User_status" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
                 <ScalarProperty Name="id_role" ColumnName="id_role" />
                 <ScalarProperty Name="id_staff" ColumnName="id_staff" />
-                <ScalarProperty Name="login" ColumnName="login" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="user_status" ColumnName="user_status" />
                 <ScalarProperty Name="id_tg" ColumnName="id_tg" />
               </MappingFragment>
             </EntityTypeMapping>

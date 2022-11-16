@@ -13,21 +13,20 @@ namespace HR_Department.ApplicationData
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ApplicantEntities1 : DbContext
+    public partial class ApplicantEntities2 : DbContext
     {
-        public ApplicantEntities1()
-            : base("name=ApplicantEntities1")
+        public ApplicantEntities2()
+            : base("name=ApplicantEntities2")
         {
         }
-
-        private static ApplicantEntities1 _context;
-        public static ApplicantEntities1 GetContext()
+        
+        private static ApplicantEntities2 _content;
+        public static ApplicantEntities2 GetContext()
         {
-            if( _context == null )
-                _context = new ApplicantEntities1();
-            return _context;
+            if(_content == null )
+                _content = new ApplicantEntities2();
+            return _content;
         }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

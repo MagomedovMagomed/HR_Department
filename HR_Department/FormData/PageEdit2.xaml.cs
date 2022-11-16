@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HR_Department.ApplicationData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,21 @@ namespace HR_Department.FormData
         public PageEdit2()
         {
             InitializeComponent();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new PageEdit());
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new DataForm());
+        }
+
+        private void Out_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new DataForm());
         }
     }
 }

@@ -34,7 +34,7 @@ namespace HR_Department.PageMain
         {
             try
             {
-                var usetObj = AppContent.Model1.User.FirstOrDefault(x => x.login == login.Text && x.password == password.Password);
+                var usetObj = AppContent.Model1.User.FirstOrDefault(x => x.Login == login.Text && x.Password == password.Password);
                 if (usetObj == null)
                 {
                     MessageBox.Show("Такого пользователя нет!", "Ошибка при авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -45,15 +45,15 @@ namespace HR_Department.PageMain
                     {
                         case 1:
                             AppFrame.frameMain.Navigate(new FormData.DataForm());
-                            MessageBox.Show("Здравствуйте, Администратор " + usetObj.login + "!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Здравствуйте, Администратор " + usetObj.Login + "!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                             break;  
                         case 2:
                             AppFrame.frameMain.Navigate(new FormData.DataForm());
-                            MessageBox.Show("Здравствуйте, Эпидимиолог " + usetObj.login + "!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Здравствуйте, Эпидимиолог " + usetObj.Login + "!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                             break;
                         case 3:
                             AppFrame.frameMain.Navigate(new FormData.DataForm());
-                            MessageBox.Show("Здравствуйте, Сотрудник отдела кадров " + usetObj.login + "!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Здравствуйте, Сотрудник отдела кадров " + usetObj.Login + "!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                             break;
                         default:
                             MessageBox.Show("Данные не обнаружены !", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);

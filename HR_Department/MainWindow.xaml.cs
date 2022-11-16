@@ -25,7 +25,7 @@ namespace HR_Department
         public MainWindow()
         {
             InitializeComponent();
-            AppContent.Model1 = new ApplicantEntities1();
+            AppContent.Model1 = new ApplicantEntities2();
             AppFrame.frameMain = FrmMain;
             FrmMain.Navigate(new AuthorizationPage());
         }
