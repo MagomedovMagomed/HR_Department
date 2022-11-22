@@ -127,9 +127,6 @@
     <Compile Include="ApplicationData\Substation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationData\sysdiagrams.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="ApplicationData\The_result_of_the_meeting.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

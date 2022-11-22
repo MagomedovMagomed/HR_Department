@@ -18,8 +18,9 @@ namespace HR_Department.ApplicationData
         public string Surename_applicant { get; set; }
         public string Name_applicant { get; set; }
         public string Lastname_applicant { get; set; }
-        public Nullable<decimal> Telephon { get; set; }
-        public decimal SNILS { get; set; }
+        public string Telephon { get; set; }
+        public string SNILS { get; set; }
+        public string Email { get; set; }
         public System.DateTime Date_of_the_interview { get; set; }
         public int id_post { get; set; }
         public Nullable<bool> documents_education { get; set; }
@@ -28,7 +29,6 @@ namespace HR_Department.ApplicationData
         public string Note { get; set; }
         public Nullable<int> id_the_result_of_the_meeting { get; set; }
         public string Where_by_whom_experience { get; set; }
-        public string Email { get; set; }
     
         public virtual Post Post { get; set; }
         public virtual Substation Substation { get; set; }

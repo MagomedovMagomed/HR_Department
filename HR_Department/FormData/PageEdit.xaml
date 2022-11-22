@@ -30,15 +30,14 @@
         <Label Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="auto" FontWeight="Bold" FontSize="22" Content="Должность" ></Label>
         <Label Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Width="auto" FontWeight="Bold" FontSize="22" Content="Документы об" Margin="0,10,0,0"></Label>
         <Label Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" Width="auto" FontWeight="Bold" FontSize="22" Content="образовании" Margin="0,47,0,0"></Label>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="0" Width="120" x:Name="Surename" Text="{Binding Nazvanie}"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Width="120" x:Name="Name" Text="{Binding Time}"/>
-        <TextBox Grid.Column="3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Width="120" x:Name="Document" Text="{Binding Ostatok}"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Width="120" x:Name="Lastname" Text="{Binding Poster}"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="3" Width="162" x:Name="Note" Text="{Binding Nazvanie}"  Height="92"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="0" Width="120" x:Name="Surename" Text="{Binding Surename_applicant}"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Width="120" x:Name="Name" Text="{Binding Name_applicant}"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Width="120" x:Name="Lastname" Text="{Binding Lastname_applicant}"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="3" Width="162" x:Name="Letter" Text="{Binding Cover_letter}"  Height="92"/>
         <Button x:Name="Out" Grid.Column="2" Content="Выход" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="46" Width="90" FontSize="20" FontWeight="Bold" Click="Out_Click" Background="#FFCECCCD"/>
         <Button x:Name="Next" Grid.Column="4" Content="Следующая" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="46" Width="132" FontSize="20" FontWeight="Bold" Click="Next_Click"/>
-        <ComboBox x:Name="Post" Grid.Column="3" HorizontalAlignment="Center" Margin="0,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <RadioButton Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="0 -10 0 0" Content="Понедельник" BorderThickness="2,2,2,2" />
-        <RadioButton Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Margin="-37 30 0 0" Content="Четверг" BorderThickness="2,2,2,2" />
+        <ComboBox Name="Post" Grid.Column="3" SelectedItem="{Binding Post.Name_post}" DisplayMemberPath="Name_post" SelectedValuePath="id_post" HorizontalAlignment="Center" Margin="0,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="Interview" SelectedDate="{Binding Path=Date_of_the_interview}" Grid.Column="3" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" CalendarOpened="DatePicker_CalendarOpened"/>
+        <CheckBox x:Name="Document" Grid.Column="3" Content="Проверены" HorizontalAlignment="Center" Grid.Row="2" Width="160" Height="18" FontSize="15" VerticalAlignment="Center" ContentStringFormat="" Padding="4,-3,0,0"/>
     </Grid>
 </Page>

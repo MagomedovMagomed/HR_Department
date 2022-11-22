@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using HR_Department.ApplicationData;
 using HR_Department;
 using System.Data.Entity;
+using System.Windows.Automation.Peers;
 
 namespace HR_Department.FormData
 {
@@ -106,7 +107,18 @@ namespace HR_Department.FormData
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.frameMain.Navigate(new PageEdit());
+            string send_date = "21.11.2022";
+            AppFrame.frameMain.Navigate(new PageEdit(null), send_date) ;
+        }
+
+        private void Applic_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new PageEdit((sender as System.Windows.Controls.Primitives.IItemContainerGenerator) as Applicant));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new PageEdit((sender as Button).DataContext as Applicant));
         }
     }
 }

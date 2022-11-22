@@ -14,11 +14,12 @@
             <ComboBox SelectionChanged="Filtr_SelectionChanged" Height="25" Name="Filtr" Width="150" Margin="110 0 0 0"/>
             <ComboBox SelectionChanged="Sort_SelectionChanged" Height="25" Width="150" Name="Sort" Margin="110 0 0 0"/>
         </StackPanel>
-        <ListView Name="Applic" VirtualizingPanel.ScrollUnit="Pixel" Margin="0,64,0,60" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView PreviewMouseDoubleClick="Applic_PreviewMouseDoubleClick"  Name="Applic" VirtualizingPanel.ScrollUnit="Pixel" Margin="0,64,0,60" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*"></ColumnDefinition>
                             <ColumnDefinition Width="100*"></ColumnDefinition>
                             <ColumnDefinition Width="100*"></ColumnDefinition>
                             <ColumnDefinition Width="100*"></ColumnDefinition>
@@ -35,6 +36,7 @@
                         <TextBlock FontSize="22" Grid.Row="0" Grid.Column="4" Width="auto" Text="{Binding Post.Name_post}"></TextBlock>
                         <TextBlock FontSize="22" Grid.Row="1" Grid.ColumnSpan="3" Width="auto" Text="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" ></TextBlock>
                         <StackPanel Grid.Row="1"/>
+                        <Button Grid.Column="5" Width="100" Click="Button_Click"></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

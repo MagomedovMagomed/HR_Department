@@ -30,15 +30,15 @@
         <Label Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="auto" FontWeight="Bold" FontSize="22" Content="Подстанция" ></Label>
         <Label Grid.Column="2" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Top" Width="auto" FontWeight="Bold" FontSize="22" Content="Стаж Кем? Где?" Margin="0,31,0,0"></Label>
         <Label Grid.Column="2" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Center" Width="auto" FontWeight="Bold" FontSize="22" Content="Сколько?" Margin="0,47,0,0"></Label>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="0" Width="120" x:Name="Surename" Text="{Binding Nazvanie}"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Width="120" x:Name="Name" Text="{Binding Time}"/>
-        <TextBox Grid.Column="3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="0" Width="120" x:Name="Document" Text="{Binding Ostatok}"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Width="120" x:Name="Lastname" Text="{Binding Poster}"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="0" Width="120" x:Name="Telephon" Text="{Binding Nazvanie}"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Width="120" x:Name="SNILS" Text="{Binding Time}"/>
+        <TextBox Grid.Column="3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="0" Width="120" x:Name="Expirence" Text="{Binding Ostatok}"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Width="120" x:Name="Email" Text="{Binding Poster}"/>
         <TextBox Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="3" Width="162" x:Name="Note" Text="{Binding Nazvanie}"  Height="92"/>
-        <Button x:Name="Out" Grid.Column="2" Content="Выход" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Height="46" Width="90" FontSize="20" FontWeight="Bold" Margin="-130 0 0 0" Background="#FFA52935" Click="Out_Click"/>
-        <Button x:Name="Save" Grid.Column=" 3" Content="Сохранить" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center" Height="46" Width="90" FontSize="20" FontWeight="Bold" Background="#FF8BDF67" Click="Save_Click"/>
-        <Button x:Name="Back" Grid.Column="2" Content="Прошлая" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="46" Width="115" FontSize="20" FontWeight="Bold" Margin="90 0 0 0" Background="#00000000" Click="Back_Click"/>
-        <ComboBox x:Name="Post" Grid.Column="3" HorizontalAlignment="Center" Margin="0,40,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="Post_Copy" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="120"/>
+        <Button x:Name="Out" Grid.Column="2" Content="Выход" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="46" Width="90" FontSize="20" FontWeight="Bold" Margin="-130 0 0 0" Click="Out_Click"/>
+        <Button x:Name="Save1" Grid.Column="3" Content="Сохранить" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="45" Width="120" FontSize="20" FontWeight="Bold" Click="Save_Click_1"/>
+        <Button x:Name="Back" Grid.Column="2" Content="Прошлая" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Height="46" Width="115" FontSize="20" FontWeight="Bold" Margin="90 0 0 0" Click="Back_Click"/>
+        <ComboBox x:Name="Substation" Grid.Column="3" HorizontalAlignment="Center" Margin="0,40,0,0" SelectedItem="{Binding Substation.Name_substation}" DisplayMemberPath="Name_substation" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="Result" SelectedItem="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" DisplayMemberPath="Name_the_result_of_the_meeting" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="120"/>
     </Grid>
 </Page>
