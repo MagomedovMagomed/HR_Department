@@ -72,15 +72,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FormData\epidimology.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FormData\PageEdit.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FormData\PageEdit2.xaml">
+    <Page Include="FormData\PageAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,6 +90,9 @@
     <Compile Include="ApplicationData\AppContent.cs" />
     <Compile Include="ApplicationData\AppFrame.cs" />
     <Compile Include="ApplicationData\Applicant.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationData\Count_Interview.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ApplicationData\Model1.Context.cs">
@@ -127,6 +122,9 @@
     <Compile Include="ApplicationData\Substation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationData\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationData\The_result_of_the_meeting.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -136,14 +134,8 @@
     <Compile Include="FormData\DataForm.xaml.cs">
       <DependentUpon>DataForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FormData\epidimology.xaml.cs">
-      <DependentUpon>epidimology.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FormData\PageEdit.xaml.cs">
-      <DependentUpon>PageEdit.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FormData\PageEdit2.xaml.cs">
-      <DependentUpon>PageEdit2.xaml</DependentUpon>
+    <Compile Include="FormData\PageAdd.xaml.cs">
+      <DependentUpon>PageAdd.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -5,38 +5,42 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HR_Department.FormData"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="1300"
       Title="DataForm">
 
     <Grid Background="#FF015666">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="800">
-            <TextBox Name="Search" TextChanged="Search_TextChanged" Width="150" Height="20" Background="White" Margin="30 0 0 0"/>
-            <ComboBox SelectionChanged="Filtr_SelectionChanged" Height="25" Name="Filtr" Width="150" Margin="110 0 0 0"/>
-            <ComboBox SelectionChanged="Sort_SelectionChanged" Height="25" Width="150" Name="Sort" Margin="110 0 0 0"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="64" Width="1300">
+            <TextBox Name="Search" TextChanged="Search_TextChanged" Width="150" Height="20" Background="White" Margin="120 0 0 0"/>
+            <ComboBox SelectionChanged="Filtr_SelectionChanged" Height="25" Name="Filtr" Width="150" Margin="160 0 0 0"/>
+            <ComboBox SelectionChanged="Sort_SelectionChanged" Height="25" Width="150" Name="Sort" Margin="160 0 0 0"/>
+            <ComboBox SelectionChanged="Filtr2_SelectionChanged" Height="25" Name="Filtr2" Width="150" Margin="160 0 0 0"/>
         </StackPanel>
-        <ListView PreviewMouseDoubleClick="Applic_PreviewMouseDoubleClick"  Name="Applic" VirtualizingPanel.ScrollUnit="Pixel" Margin="0,64,0,60" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView  Name="Applic" VirtualizingPanel.ScrollUnit="Pixel" Margin="0,64,0,60" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100*"></ColumnDefinition>
-                            <ColumnDefinition Width="100*"></ColumnDefinition>
-                            <ColumnDefinition Width="100*"></ColumnDefinition>
-                            <ColumnDefinition Width="100*"></ColumnDefinition>
-                            <ColumnDefinition Width="100*"></ColumnDefinition>
-                            <ColumnDefinition Width="100*"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="200"></ColumnDefinition>
+                            <ColumnDefinition Width="350"></ColumnDefinition>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="100*"></RowDefinition>
                             <RowDefinition Height="100*"></RowDefinition>
                             <RowDefinition Height="100*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock FontSize="22" Grid.Row="0" Grid.Column="0" Width="auto" Margin="0 0 3 0" Text="{Binding Surename_applicant}"></TextBlock>
                         <TextBlock FontSize="22" Grid.Row="0" Grid.Column="1" Width="auto" Margin="0 0 3 0" Text="{Binding Name_applicant}"></TextBlock>
                         <TextBlock FontSize="22" Grid.Row="0" Grid.Column="2" Width="auto" Margin="0 0 3 0" Text="{Binding Lastname_applicant}"></TextBlock>
-                        <TextBlock FontSize="22" Grid.Row="0" Grid.Column="4" Width="auto" Text="{Binding Post.Name_post}"></TextBlock>
-                        <TextBlock FontSize="22" Grid.Row="1" Grid.ColumnSpan="3" Width="auto" Text="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" ></TextBlock>
+                        <TextBlock FontSize="22" Grid.Row="0" Grid.Column="3" Width="auto" Margin="0 0 3 0" Text="{Binding Substation.Name_substation}"></TextBlock>
+                        <TextBlock FontSize="22" Grid.Row="1" Grid.Column="0"  Width="auto" Text="{Binding Post.Name_post}"></TextBlock>
+                        <TextBlock FontSize="22" Grid.Row="1" Grid.Column="1"  Width="auto" Text="{Binding Telephon}"></TextBlock>
+                        <TextBlock FontSize="22" Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Width="auto" Margin="0 15 0 0" Text="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" ></TextBlock>
                         <StackPanel Grid.Row="1"/>
-                        <Button Grid.Column="5" Width="100" Click="Button_Click"></Button>
+                        <Button Content="Изменить" Grid.Column="5" Width="100" Click="Button_Click"></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

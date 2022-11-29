@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HR_Department"
         mc:Ignorable="d"
-        Title="СМП" Height="550" Width="800" ResizeMode="NoResize" Icon="/Resources/logo.png" WindowStartupLocation="CenterScreen">
+        Title="СМП" Height="800" Width="1300" ResizeMode="NoResize" Icon="/Resources/logo.png" WindowStartupLocation="CenterScreen">
     <Grid MinWidth="30">
         <Grid.RowDefinitions>
             <RowDefinition Height="53*"/>
@@ -13,11 +13,11 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Background="#FFA52935" Margin="0,-1,0,0">
             <Image Width="179" Height="110" ScrollViewer.CanContentScroll="True" Source="Resources/minilogo.png" Margin="-30"/>
-            <StackPanel Margin="40 0 0 0"  Width="521">
-                <TextBlock Text="Городская станция" Margin="0 15 0 0" Width="239" FontSize="24" Height="30" Foreground="White" />
-                <TextBlock Text="Скорой медицинской помощи" Width="512" Margin="0 0 0 10" FontSize="36" Height="54" Foreground="White" />
+            <StackPanel Margin="40 0 0 0"  Width="1000">
+                <TextBlock Text="Городская станция" Margin="0 15 0 0" Width="440" FontSize="34" Height="40" Foreground="White" />
+                <TextBlock Text="Скорой медицинской помощи" Width="1000" Margin="0 20 0 10" FontSize="66" Height="80" Foreground="White" />
             </StackPanel>
         </StackPanel>
-        <Frame Name="FrmMain" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <Frame Name="FrmMain" NavigationUIVisibility="Hidden" Grid.RowSpan="2" Margin="0,191,0,0"/>
     </Grid>
 </Window>

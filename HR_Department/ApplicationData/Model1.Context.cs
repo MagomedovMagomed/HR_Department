@@ -21,23 +21,26 @@ namespace HR_Department.ApplicationData
         }
 
         private static ApplicantEntities2 _content;
+
         public static ApplicantEntities2 GetContext()
         {
             if(_content == null)
                 _content = new ApplicantEntities2();
             return _content;
         }
-
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Applicant> Applicant { get; set; }
+        public virtual DbSet<Count_Interview> Count_Interview { get; set; }
         public virtual DbSet<Post> Post { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
         public virtual DbSet<Substation> Substation { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<The_result_of_the_meeting> The_result_of_the_meeting { get; set; }
         public virtual DbSet<User> User { get; set; }
     }

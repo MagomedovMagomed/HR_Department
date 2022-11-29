@@ -29,7 +29,9 @@ namespace HR_Department.ApplicationData
         public string Note { get; set; }
         public Nullable<int> id_the_result_of_the_meeting { get; set; }
         public string Where_by_whom_experience { get; set; }
+        public Nullable<int> id_Count_Interview { get; set; }
     
+        public virtual Count_Interview Count_Interview { get; set; }
         public virtual Post Post { get; set; }
         public virtual Substation Substation { get; set; }
         public virtual The_result_of_the_meeting The_result_of_the_meeting { get; set; }

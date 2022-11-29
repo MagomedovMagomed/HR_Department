@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище ApplicantModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="id_applicant" />
@@ -24,6 +24,14 @@
           <Property Name="Note" Type="nvarchar" MaxLength="255" />
           <Property Name="id_the_result_of_the_meeting" Type="int" />
           <Property Name="Where_by_whom_experience" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_Count_Interview" Type="int" />
+        </EntityType>
+        <EntityType Name="Count_Interview">
+          <Key>
+            <PropertyRef Name="Id_Count_Interview" />
+          </Key>
+          <Property Name="Id_Count_Interview" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Count_Interview" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -56,6 +64,16 @@
           <Property Name="id_substation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name_substation" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="The_result_of_the_meeting">
           <Key>
             <PropertyRef Name="id_the_result_of_the_meeting" />
@@ -76,6 +94,18 @@
           <Property Name="id_tg" Type="varchar" MaxLength="50" />
           <Property Name="Email_user" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK_Applicant_Count_Interview">
+          <End Role="Count_Interview" Type="Self.Count_Interview" Multiplicity="0..1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Count_Interview">
+              <PropertyRef Name="Id_Count_Interview" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="id_Count_Interview" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Applicant_Post">
           <End Role="Post" Type="Self.Post" Multiplicity="1" />
           <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
@@ -148,14 +178,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище ApplicantModelContainer">
+        <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Applicant" EntityType="Self.Applicant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Count_Interview" EntityType="Self.Count_Interview" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Substation" EntityType="Self.Substation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="The_result_of_the_meeting" EntityType="Self.The_result_of_the_meeting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Applicant_Count_Interview" Association="Self.FK_Applicant_Count_Interview">
+            <End Role="Count_Interview" EntitySet="Count_Interview" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
           <AssociationSet Name="FK_Applicant_Post" Association="Self.FK_Applicant_Post">
             <End Role="Post" EntitySet="Post" />
             <End Role="Applicant" EntitySet="Applicant" />
@@ -181,10 +217,11 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ApplicantModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Applicant">
           <Key>
             <PropertyRef Name="id_applicant" />
@@ -193,8 +230,8 @@
           <Property Name="Surename_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Lastname_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telephon" Type="String" />
-          <Property Name="SNILS" Type="String" Nullable="false" />
+          <Property Name="Telephon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SNILS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date_of_the_interview" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="id_post" Type="Int32" Nullable="false" />
@@ -204,9 +241,19 @@
           <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="id_the_result_of_the_meeting" Type="Int32" />
           <Property Name="Where_by_whom_experience" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_Count_Interview" Type="Int32" />
+          <NavigationProperty Name="Count_Interview" Relationship="Self.FK_Applicant_Count_Interview" FromRole="Applicant" ToRole="Count_Interview" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Applicant_Post" FromRole="Applicant" ToRole="Post" />
           <NavigationProperty Name="Substation" Relationship="Self.FK_Applicant_Substation" FromRole="Applicant" ToRole="Substation" />
           <NavigationProperty Name="The_result_of_the_meeting" Relationship="Self.FK_Applicant_The_result_of_the_meeting" FromRole="Applicant" ToRole="The_result_of_the_meeting" />
+        </EntityType>
+        <EntityType Name="Count_Interview">
+          <Key>
+            <PropertyRef Name="Id_Count_Interview" />
+          </Key>
+          <Property Name="Id_Count_Interview" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Count_Interview" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_Count_Interview" FromRole="Count_Interview" ToRole="Applicant" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -245,6 +292,16 @@
           <Property Name="Name_substation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_Substation" FromRole="Substation" ToRole="Applicant" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="The_result_of_the_meeting">
           <Key>
             <PropertyRef Name="id_the_result_of_the_meeting" />
@@ -262,12 +319,24 @@
           <Property Name="id_staff" Type="Int32" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="User_status" Type="String" />
-          <Property Name="id_tg" Type="String" />
+          <Property Name="User_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_tg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email_user" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_User_Staff" FromRole="User" ToRole="Staff" />
         </EntityType>
+        <Association Name="FK_Applicant_Count_Interview">
+          <End Role="Count_Interview" Type="Self.Count_Interview" Multiplicity="0..1" />
+          <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Count_Interview">
+              <PropertyRef Name="Id_Count_Interview" />
+            </Principal>
+            <Dependent Role="Applicant">
+              <PropertyRef Name="id_Count_Interview" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Applicant_Post">
           <End Role="Post" Type="Self.Post" Multiplicity="1" />
           <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
@@ -342,12 +411,18 @@
         </Association>
         <EntityContainer Name="ApplicantEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applicant" EntityType="Self.Applicant" />
+          <EntitySet Name="Count_Interview" EntityType="Self.Count_Interview" />
           <EntitySet Name="Post" EntityType="Self.Post" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Staff" EntityType="Self.Staff" />
           <EntitySet Name="Substation" EntityType="Self.Substation" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="The_result_of_the_meeting" EntityType="Self.The_result_of_the_meeting" />
           <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Applicant_Count_Interview" Association="Self.FK_Applicant_Count_Interview">
+            <End Role="Count_Interview" EntitySet="Count_Interview" />
+            <End Role="Applicant" EntitySet="Applicant" />
+          </AssociationSet>
           <AssociationSet Name="FK_Applicant_Post" Association="Self.FK_Applicant_Post">
             <End Role="Post" EntitySet="Post" />
             <End Role="Applicant" EntitySet="Applicant" />
@@ -378,9 +453,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ApplicantModelContainer" CdmEntityContainer="ApplicantEntities2">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="ApplicantEntities2">
           <EntitySetMapping Name="Applicant">
-            <EntityTypeMapping TypeName="ApplicantModel.Applicant">
+            <EntityTypeMapping TypeName="Model.Applicant">
               <MappingFragment StoreEntitySet="Applicant">
                 <ScalarProperty Name="id_applicant" ColumnName="id_applicant" />
                 <ScalarProperty Name="Surename_applicant" ColumnName="Surename_applicant" />
@@ -397,11 +472,20 @@
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="id_the_result_of_the_meeting" ColumnName="id_the_result_of_the_meeting" />
                 <ScalarProperty Name="Where_by_whom_experience" ColumnName="Where_by_whom_experience" />
+                <ScalarProperty Name="id_Count_Interview" ColumnName="id_Count_Interview" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Count_Interview">
+            <EntityTypeMapping TypeName="Model.Count_Interview">
+              <MappingFragment StoreEntitySet="Count_Interview">
+                <ScalarProperty Name="Id_Count_Interview" ColumnName="Id_Count_Interview" />
+                <ScalarProperty Name="Name_Count_Interview" ColumnName="Name_Count_Interview" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Post">
-            <EntityTypeMapping TypeName="ApplicantModel.Post">
+            <EntityTypeMapping TypeName="Model.Post">
               <MappingFragment StoreEntitySet="Post">
                 <ScalarProperty Name="id_post" ColumnName="id_post" />
                 <ScalarProperty Name="Name_post" ColumnName="Name_post" />
@@ -409,7 +493,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="ApplicantModel.Role">
+            <EntityTypeMapping TypeName="Model.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="id_role" ColumnName="id_role" />
                 <ScalarProperty Name="Name_role" ColumnName="Name_role" />
@@ -417,7 +501,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Staff">
-            <EntityTypeMapping TypeName="ApplicantModel.Staff">
+            <EntityTypeMapping TypeName="Model.Staff">
               <MappingFragment StoreEntitySet="Staff">
                 <ScalarProperty Name="id_staff" ColumnName="id_staff" />
                 <ScalarProperty Name="Surename_staff" ColumnName="Surename_staff" />
@@ -428,15 +512,26 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Substation">
-            <EntityTypeMapping TypeName="ApplicantModel.Substation">
+            <EntityTypeMapping TypeName="Model.Substation">
               <MappingFragment StoreEntitySet="Substation">
                 <ScalarProperty Name="id_substation" ColumnName="id_substation" />
                 <ScalarProperty Name="Name_substation" ColumnName="Name_substation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="The_result_of_the_meeting">
-            <EntityTypeMapping TypeName="ApplicantModel.The_result_of_the_meeting">
+            <EntityTypeMapping TypeName="Model.The_result_of_the_meeting">
               <MappingFragment StoreEntitySet="The_result_of_the_meeting">
                 <ScalarProperty Name="id_the_result_of_the_meeting" ColumnName="id_the_result_of_the_meeting" />
                 <ScalarProperty Name="Name_the_result_of_the_meeting" ColumnName="Name_the_result_of_the_meeting" />
@@ -444,7 +539,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="ApplicantModel.User">
+            <EntityTypeMapping TypeName="Model.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
                 <ScalarProperty Name="id_role" ColumnName="id_role" />
