@@ -20,11 +20,11 @@ namespace HR_Department.ApplicationData
             this.User = new HashSet<User>();
         }
     
-        public int id_staff { get; set; }
+        public int Id_staff { get; set; }
         public string Surename_staff { get; set; }
         public string Name_staff { get; set; }
         public string Lastname_staff { get; set; }
-        public int id_post_staff { get; set; }
+        public int Id_post_staff { get; set; }
     
         public virtual Post Post { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -17,6 +17,9 @@ using HR_Department.ApplicationData;
 using HR_Department;
 using System.Data.Entity;
 using System.Windows.Automation.Peers;
+using System.Windows.Controls.Primitives;
+using HR_Department.AdminPage;
+using HR_Department.PageMain;
 
 namespace HR_Department.FormData
 {
@@ -26,7 +29,9 @@ namespace HR_Department.FormData
     public partial class DataForm : Page
     {
         private Applicant _currentApp = new Applicant();
-        public DataForm()
+
+        private int role;
+        public DataForm(int roleA)
         {
             InitializeComponent();
 
@@ -48,14 +53,19 @@ namespace HR_Department.FormData
             Sort.SelectedIndex = 0;
             Filtr.SelectedIndex = 0;
             Filtr2.SelectedIndex = 0;
-            var _currentAppl = ApplicantEntities2.GetContext().Applicant.ToList();
+            var _currentAppl = ApplicantEntities2.GetContent().Applicant.ToList();
             Applic.ItemsSource = _currentAppl;
             UpdateApplicant();
+            role = roleA;
+            if(role == 1)
+            {
+                //Admin.Visibility = Visibility.Visible;
+            }
         }
 
         public void UpdateApplicant()
         {
-            var CurrentAppl = ApplicantEntities2.GetContext().Applicant.ToList();
+            var CurrentAppl = ApplicantEntities2.GetContent().Applicant.ToList();
 
             if (Filtr.SelectedIndex > 0)
             {
@@ -81,7 +91,7 @@ namespace HR_Department.FormData
                 Applic.ItemsSource = CurrentAppl.OrderBy(p => p.Surename_applicant).ToList();
                 return;
             }
-            Applic.ItemsSource = CurrentAppl.OrderBy(p => p.id_applicant).ToList();
+            Applic.ItemsSource = CurrentAppl.OrderBy(p => p.Id_applicant).ToList();
         }
 
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
@@ -108,11 +118,11 @@ namespace HR_Department.FormData
             {
                 try
                 {
-                    ApplicantEntities2.GetContext().Applicant.RemoveRange(ApplicantRemove);
-                    ApplicantEntities2.GetContext().SaveChanges();
+                    ApplicantEntities2.GetContent().Applicant.RemoveRange(ApplicantRemove);
+                    ApplicantEntities2.GetContent().SaveChanges();
                     MessageBox.Show("Данные удалены!");
 
-                    Applic.ItemsSource = ApplicantEntities2.GetContext().Applicant.ToList();
+                    Applic.ItemsSource = ApplicantEntities2.GetContent().Applicant.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -123,16 +133,33 @@ namespace HR_Department.FormData
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.frameMain.Navigate(new PageAdd(null));
+            AppFrame.frameMain.Navigate(new PageAdd(null, role));
         }   
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.frameMain.Navigate(new PageAdd((sender as Button).DataContext as Applicant));
+            MessageBox.Show("Функция находиться на доработке");
+            //AppFrame.frameMain.Navigate(new PageAdd((sender as Button).DataContext as Applicant));
         }
 
         private void Filtr2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateApplicant();
+        }
+
+        private void Applic_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Applicant applicant = Applic.SelectedItem as Applicant;
+            AppFrame.frameMain.Navigate(new PageOut(applicant, role));
+        }
+
+        private void Out_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new AuthorizationPage());
+        }
+
+        private void Admin_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new PageAdmin());
         }
     }
 }

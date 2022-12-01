@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HR_Department.AdminPage;
 
 namespace HR_Department.PageMain
 {
@@ -41,18 +42,18 @@ namespace HR_Department.PageMain
                 }
                 else
                 {
-                    switch (usetObj.id_role)
+                    switch (usetObj.Id_role)
                     {
                         case 1:
-                            AppFrame.frameMain.Navigate(new FormData.DataForm());
+                            AppFrame.frameMain.Navigate(new PageAdmin());
                             MessageBox.Show("Здравствуйте, Администратор " + usetObj.Login + "!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                             break;  
                         case 2:
-                            AppFrame.frameMain.Navigate(new FormData.DataForm());
+                            AppFrame.frameMain.Navigate(new FormData.DataForm(2));
                             MessageBox.Show("Здравствуйте, Эпидимиолог " + usetObj.Login + "!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                             break;
                         case 3:
-                            AppFrame.frameMain.Navigate(new FormData.DataForm());
+                            AppFrame.frameMain.Navigate(new FormData.DataForm(3));
                             MessageBox.Show("Здравствуйте, Сотрудник отдела кадров " + usetObj.Login + "!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
                             break;
                         default:

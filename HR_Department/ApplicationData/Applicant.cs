@@ -14,7 +14,7 @@ namespace HR_Department.ApplicationData
     
     public partial class Applicant
     {
-        public int id_applicant { get; set; }
+        public int Id_applicant { get; set; }
         public string Surename_applicant { get; set; }
         public string Name_applicant { get; set; }
         public string Lastname_applicant { get; set; }
@@ -22,14 +22,14 @@ namespace HR_Department.ApplicationData
         public string SNILS { get; set; }
         public string Email { get; set; }
         public System.DateTime Date_of_the_interview { get; set; }
-        public int id_post { get; set; }
+        public int Id_post { get; set; }
         public Nullable<bool> documents_education { get; set; }
         public string Cover_letter { get; set; }
         public Nullable<int> Id_substation { get; set; }
         public string Note { get; set; }
-        public Nullable<int> id_the_result_of_the_meeting { get; set; }
+        public Nullable<int> Id_the_result_of_the_meeting { get; set; }
         public string Where_by_whom_experience { get; set; }
-        public Nullable<int> id_Count_Interview { get; set; }
+        public Nullable<int> Id_Count_Interview { get; set; }
     
         public virtual Count_Interview Count_Interview { get; set; }
         public virtual Post Post { get; set; }

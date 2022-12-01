@@ -21,7 +21,7 @@ namespace HR_Department.ApplicationData
             this.Staff = new HashSet<Staff>();
         }
     
-        public int id_post { get; set; }
+        public int Id_post { get; set; }
         public string Name_post { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

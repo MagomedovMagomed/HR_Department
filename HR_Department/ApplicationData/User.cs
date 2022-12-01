@@ -14,13 +14,13 @@ namespace HR_Department.ApplicationData
     
     public partial class User
     {
-        public int id_user { get; set; }
-        public int id_role { get; set; }
-        public int id_staff { get; set; }
+        public int Id_user { get; set; }
+        public int Id_role { get; set; }
+        public int Id_staff { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string User_status { get; set; }
-        public string id_tg { get; set; }
+        public string ID_TG { get; set; }
         public string Email_user { get; set; }
     
         public virtual Role Role { get; set; }

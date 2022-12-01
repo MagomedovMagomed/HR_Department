@@ -68,11 +68,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FormData\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormData\DataForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FormData\PageAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormData\PageOut.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,11 +139,17 @@
     <Compile Include="ApplicationData\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="FormData\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FormData\DataForm.xaml.cs">
       <DependentUpon>DataForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="FormData\PageAdd.xaml.cs">
       <DependentUpon>PageAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormData\PageOut.xaml.cs">
+      <DependentUpon>PageOut.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

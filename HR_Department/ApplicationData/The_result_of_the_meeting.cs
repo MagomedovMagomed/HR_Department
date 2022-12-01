@@ -20,7 +20,7 @@ namespace HR_Department.ApplicationData
             this.Applicant = new HashSet<Applicant>();
         }
     
-        public int id_the_result_of_the_meeting { get; set; }
+        public int Id_the_result_of_the_meeting { get; set; }
         public string Name_the_result_of_the_meeting { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

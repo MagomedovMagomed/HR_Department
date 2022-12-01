@@ -15,7 +15,7 @@
             <ComboBox SelectionChanged="Sort_SelectionChanged" Height="25" Width="150" Name="Sort" Margin="160 0 0 0"/>
             <ComboBox SelectionChanged="Filtr2_SelectionChanged" Height="25" Name="Filtr2" Width="150" Margin="160 0 0 0"/>
         </StackPanel>
-        <ListView  Name="Applic" VirtualizingPanel.ScrollUnit="Pixel" Margin="0,64,0,60" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView  Name="Applic" MouseDoubleClick="Applic_MouseDoubleClick" VirtualizingPanel.ScrollUnit="Pixel" Margin="0,64,0,60" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -32,6 +32,7 @@
                             <RowDefinition Height="100*"></RowDefinition>
                             <RowDefinition Height="100*"></RowDefinition>
                         </Grid.RowDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="2" Grid.RowSpan="2" Grid.ColumnSpan="6" Margin="-5 0 -5 -5"></Border>
                         <TextBlock FontSize="22" Grid.Row="0" Grid.Column="0" Width="auto" Margin="0 0 3 0" Text="{Binding Surename_applicant}"></TextBlock>
                         <TextBlock FontSize="22" Grid.Row="0" Grid.Column="1" Width="auto" Margin="0 0 3 0" Text="{Binding Name_applicant}"></TextBlock>
                         <TextBlock FontSize="22" Grid.Row="0" Grid.Column="2" Width="auto" Margin="0 0 3 0" Text="{Binding Lastname_applicant}"></TextBlock>
@@ -39,15 +40,16 @@
                         <TextBlock FontSize="22" Grid.Row="1" Grid.Column="0"  Width="auto" Text="{Binding Post.Name_post}"></TextBlock>
                         <TextBlock FontSize="22" Grid.Row="1" Grid.Column="1"  Width="auto" Text="{Binding Telephon}"></TextBlock>
                         <TextBlock FontSize="22" Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Width="auto" Margin="0 15 0 0" Text="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" ></TextBlock>
-                        <StackPanel Grid.Row="1"/>
-                        <Button Content="Изменить" Grid.Column="5" Width="100" Click="Button_Click"></Button>
+                        <Button Name="Edit" Content="Изменить" Grid.Column="5" Width="100" Click="Edit_Click" Margin="0 15 0 0"></Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="800">
-            <Button Name="Del" HorizontalAlignment="Center" Click="Del_Click" Margin="75 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Удалить"/>
-            <Button Name="Add" HorizontalAlignment="Center" Click="Add_Click" Margin="450 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Добавить"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="1200">
+            <Button Name="Out" HorizontalAlignment="Center" Click="Out_Click" Margin="50 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Выход"/>
+            <Button Name="Admin" HorizontalAlignment="Center" Click="Admin_Click" Margin="50 0 0 0" VerticalAlignment="Center" Height="45" Width="190" Content="Вернуться к панели админа"/>
+            <Button Name="Del" HorizontalAlignment="Center" Click="Del_Click" Margin="450 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Удалить"/>
+            <Button Name="Add" HorizontalAlignment="Center" Click="Add_Click" Margin="50 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Добавить"/>
         </StackPanel>
     </Grid>
 </Page>

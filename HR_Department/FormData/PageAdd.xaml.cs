@@ -1,7 +1,9 @@
-﻿using HR_Department.ApplicationData;
+﻿using HR_Department.AdminPage;
+using HR_Department.ApplicationData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,7 +24,9 @@ namespace HR_Department.FormData
     public partial class PageAdd : Page
     {
         private Applicant _currentApp = new Applicant();
-        public PageAdd(Applicant appapp)
+
+        private int role;
+        public PageAdd(Applicant appapp, int roleA)
         {
             InitializeComponent();
             if (appapp != null)
@@ -30,10 +34,34 @@ namespace HR_Department.FormData
                 _currentApp = appapp;
             }
             DataContext = _currentApp;
-            
-            Substation.ItemsSource = ApplicantEntities2.GetContext().Substation.ToList(); // Вывод списка подстанций
-            Pos.ItemsSource = ApplicantEntities2.GetContext().Post.ToList(); // Вывод списка должностей
-            Result.ItemsSource = ApplicantEntities2.GetContext().The_result_of_the_meeting.ToList(); // Вывод списка результатов встречи
+
+            Substation.ItemsSource = ApplicantEntities2.GetContent().Substation.ToList(); // Вывод списка подстанций
+            Pos.ItemsSource = ApplicantEntities2.GetContent().Post.ToList(); // Вывод списка должностей
+            Result.ItemsSource = ApplicantEntities2.GetContent().The_result_of_the_meeting.ToList(); // Вывод списка результатов встречи
+            role = roleA;
+            SendMessage("Привет");
+        }
+
+        public void SendMessage(string message)
+        {
+            string retval = string.Empty;
+            string token = "5407916923:AAGEa-Y_-bZgf-vrkzuv-u4a-04RitSJXW8";
+            string chatId;
+
+
+            foreach (var i in AppContent.Model1.User)
+            {
+                chatId = i.ID_TG;
+                if (chatId != null)
+                {
+                    string url = $"https://api.telegram.org/bot{token}/sendMessage?chat_id={chatId}&text={message}";
+
+                    using (var webClient = new WebClient())
+                    {
+                        retval = webClient.DownloadString(url);
+                    }
+                }
+            }
         }
 
         private void Sav_Click(object sender, RoutedEventArgs e)
@@ -45,7 +73,7 @@ namespace HR_Department.FormData
 
             if (subs != null)
             {
-                id_sub = subs.id_substation;
+                id_sub = subs.Id_substation;
             }
 
             var Res = Result.SelectedItem as The_result_of_the_meeting;
@@ -53,14 +81,14 @@ namespace HR_Department.FormData
 
             if (Res != null)
             {
-                id_rm = Res.id_the_result_of_the_meeting;
+                id_rm = Res.Id_the_result_of_the_meeting;
             }
             var post = Pos.SelectedItem as Post;
             var id_pos = 0;
 
             if (post != null)
             {
-                id_pos = post.id_post;
+                id_pos = post.Id_post;
             }
             if (string.IsNullOrEmpty(_currentApp.Surename_applicant))
                 error.AppendLine("Укажите Фамилию");
@@ -69,9 +97,15 @@ namespace HR_Department.FormData
             if (string.IsNullOrEmpty(_currentApp.Lastname_applicant))
                 error.AppendLine("Укажите Отчество");
             if (id_pos == 0)
-                error.AppendLine("Укажите должность");
+                if (_currentApp.Id_applicant != 0)
+                    _currentApp.Id_post = Pos.SelectedIndex;
+                else
+                    error.AppendLine("Укажите должность");
             if (id_rm == 0)
-                error.AppendLine("Укажите результат встречи");
+                if (_currentApp.Id_applicant != 0)
+                    _currentApp.Id_the_result_of_the_meeting = Result.SelectedIndex;
+                else
+                    error.AppendLine("Укажите результат встречи");
             if (string.IsNullOrEmpty(_currentApp.SNILS))
                 error.AppendLine("Укажите СНИЛС");
             if (string.IsNullOrEmpty(_currentApp.Email))
@@ -81,7 +115,10 @@ namespace HR_Department.FormData
             if (string.IsNullOrEmpty(_currentApp.Telephon))
                 error.AppendLine("Укажите телефон");
             if (id_sub == 0)
-                error.AppendLine("Укажите Подстанцию");
+                if (_currentApp.Id_applicant != 0)
+                    _currentApp.Id_substation = Substation.SelectedIndex;
+                else
+                    error.AppendLine("Укажите Подстанцию");
             if (error.Length > 0)
             {
                 MessageBox.Show(error.ToString());
@@ -98,22 +135,22 @@ namespace HR_Department.FormData
                     SNILS = SNILS.Text,
                     Email = Email.Text,
                     Date_of_the_interview = Interview.DisplayDate,
-                    id_post = id_pos,
+                    Id_post = id_pos,
                     documents_education = Document.IsChecked,
                     Cover_letter = Letter.Text,
                     Id_substation = id_sub,
                     Note = Note.Text,
-                    id_the_result_of_the_meeting = id_rm,
+                    Id_the_result_of_the_meeting = id_rm,
                     Where_by_whom_experience = Expirence.Text
                 };
                 ////AppFrame.frameMain.Navigate(new DataForm());
-                if (_currentApp.id_applicant == 0)
-                    ApplicantEntities2.GetContext().Applicant.Add(_currentApp);
+                if (_currentApp.Id_applicant == 0)
+                    ApplicantEntities2.GetContent().Applicant.Add(_currentApp);
                 try
                 {
-                    //_currentApp.id_post = id_pos;
-                    //_currentApp.id_the_result_of_the_meeting = id_rm;
-                    //_currentApp.Id_substation = id_sub;
+                    _currentApp.Id_post = id_pos;
+                    _currentApp.Id_the_result_of_the_meeting = id_rm;
+                    _currentApp.Id_substation = id_sub;
 
                     AppContent.Model1.Applicant.Add(appobj);
                     AppContent.Model1.SaveChanges();
@@ -134,7 +171,14 @@ namespace HR_Department.FormData
 
         private void Out_Click(object sender, RoutedEventArgs e)
         {
-            AppFrame.frameMain.Navigate(new DataForm());
+            if(role == 1)
+            {
+                AppFrame.frameMain.Navigate(new PageAdmin());
+            }
+            if(role == 3)
+            {
+                AppFrame.frameMain.Navigate(new DataForm(role));
+            }
         }
     }
 }

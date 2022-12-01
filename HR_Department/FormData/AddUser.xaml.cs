@@ -1,5 +1,4 @@
 ﻿using HR_Department.ApplicationData;
-using HR_Department.PageMain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,19 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HR_Department
+namespace HR_Department.FormData
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для AddUser.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddUser : Page
     {
-        public MainWindow()
+        private User _currentUs = new User();
+        public AddUser(User user)
         {
             InitializeComponent();
-            AppContent.Model1 = new ApplicantEntities2();
-            AppFrame.frameMain = FrmMain; 
-            FrmMain.Navigate(new AuthorizationPage());
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -19,16 +19,15 @@ namespace HR_Department.ApplicationData
             : base("name=ApplicantEntities2")
         {
         }
-
+    
         private static ApplicantEntities2 _content;
-
-        public static ApplicantEntities2 GetContext()
+        public static ApplicantEntities2 GetContent()
         {
             if(_content == null)
                 _content = new ApplicantEntities2();
             return _content;
         }
-        
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

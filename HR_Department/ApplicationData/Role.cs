@@ -20,7 +20,7 @@ namespace HR_Department.ApplicationData
             this.User = new HashSet<User>();
         }
     
-        public int id_role { get; set; }
+        public int Id_role { get; set; }
         public string Name_role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,0 +1,40 @@
+﻿<Page x:Class="HR_Department.FormData.AddUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HR_Department.FormData"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1300"
+      Title="AddUser">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"></RowDefinition>
+            <RowDefinition Height="100*"></RowDefinition>
+            <RowDefinition Height="100*"></RowDefinition>
+            <RowDefinition Height="100*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="200*"/>
+        </Grid.ColumnDefinitions>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" FontWeight="Bold" FontSize="22" Content="Работник" Height="39"/>
+        <Label Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="78" FontWeight="Bold" FontSize="22" Content="Статус" Height="39"/>
+        <Label Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="34" FontWeight="Bold" FontSize="22" Content="ТГ" Height="39"/>
+        <Label Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="224" FontWeight="Bold" FontSize="22" Content="Электронной почты" Height="39"/>
+        <Label Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="76" FontWeight="Bold" FontSize="22" Content="Логин" Height="39"/>
+        <Label Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="92" FontWeight="Bold" FontSize="22" Content="Пароль" Height="39"/>
+        <Label Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="62" FontWeight="Bold" FontSize="22" Content="Роль" Height="39"/>
+        <Button Content="Сохранить" Grid.Column="2" Grid.Row="3" x:Name="Save" Click="Save_Click" Margin="50,46,50,46"/>
+        <TextBox Grid.Column="3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Surename" Text="{Binding Staff.Surename_staff}"/>
+        <TextBox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Name" Text="{Binding Staff.Name_staff}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Lastname" Text="{Binding Staff.Lastname_staff}"/>
+        <TextBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Email" Text="{Binding Email}"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="35" DisplayMemberPath="Surename_staff" SelectedValuePath="id_post"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="35" DisplayMemberPath="Name_post" SelectedValuePath="id_post"/>
+        <ComboBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="35" DisplayMemberPath="Name_role" SelectedValuePath="id_post"/>
+    </Grid>
+</Page>

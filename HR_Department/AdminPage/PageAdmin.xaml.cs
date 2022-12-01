@@ -1,5 +1,9 @@
-﻿using System;
+﻿using HR_Department.ApplicationData;
+using HR_Department.FormData;
+using HR_Department.PageMain;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +27,46 @@ namespace HR_Department.AdminPage
         public PageAdmin()
         {
             InitializeComponent();
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (Visibility == Visibility.Visible)
+            {
+                //Entities1.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                DBApp.ItemsSource = ApplicantEntities2.GetContent().Applicant.ToList();
+                DBUser.ItemsSource = ApplicantEntities2.GetContent().User.ToList();
+            }
+        }
+
+        private void Edit2_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new PageAdd((sender as Button).DataContext as Applicant, 1));
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new AddUser((sender as Button).DataContext as User));
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new AddUser(null));
+        }
+
+        private void Add2_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new PageAdd(null, 1));
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new AuthorizationPage());
+        }
+
+        private void Otdel_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.frameMain.Navigate(new DataForm(1));
         }
     }
 }
