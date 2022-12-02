@@ -39,10 +39,10 @@ namespace HR_Department.FormData
             Pos.ItemsSource = ApplicantEntities2.GetContent().Post.ToList(); // Вывод списка должностей
             Result.ItemsSource = ApplicantEntities2.GetContent().The_result_of_the_meeting.ToList(); // Вывод списка результатов встречи
             role = roleA;
-            SendMessage("Привет");
+            SendMessage("Добавлен новый пользователь");
         }
 
-        public void SendMessage(string message)
+        public void SendMessage(string message) // отправка сообщения телеграмм
         {
             string retval = string.Empty;
             string token = "5407916923:AAGEa-Y_-bZgf-vrkzuv-u4a-04RitSJXW8";
@@ -66,7 +66,7 @@ namespace HR_Department.FormData
 
         private void Sav_Click(object sender, RoutedEventArgs e)
         {
-            StringBuilder error = new StringBuilder();
+            StringBuilder error = new StringBuilder(); // проверка на обязательные поля
 
             var subs = Substation.SelectedItem as Substation;
             var id_sub = 0;
@@ -169,7 +169,7 @@ namespace HR_Department.FormData
             }
         }
 
-        private void Out_Click(object sender, RoutedEventArgs e)
+        private void Out_Click(object sender, RoutedEventArgs e) // переход как администратор или сотрудник отдела кадров
         {
             if(role == 1)
             {

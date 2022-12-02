@@ -63,7 +63,7 @@
         </TabControl>
         <Button Name="Back" Content="Выход" Width="120" Height="55" Grid.Column="0" FontSize="20" Grid.Row="7" Click="Back_Click" HorizontalAlignment="Left" Margin="50 0 0 0"></Button>
         <Button Name="Otdel" Content="Страница отдела кадров" Width="250" Height="55" Grid.Column="0" FontSize="20" Grid.Row="1" Click="Otdel_Click" HorizontalAlignment="Right" Margin="0,0,775,0"></Button>
-        <Button Content="Добавить пользователей" Height="55" Width="200" HorizontalAlignment="Right" Margin="0 0 400 0" Grid.Row="1" VerticalAlignment="Center" Click="Add_Click"/>
-        <Button Content="Добавить соискателей" Height="55" Width="200" HorizontalAlignment="Right" Margin="0 0 100 0" Grid.Row="1" VerticalAlignment="Center" Click="Add2_Click"/>
+        <Button Content="Добавить пользователей" Height="55" Width="250" HorizontalAlignment="Right" FontSize="20" Margin="0 0 400 0" Grid.Row="1" VerticalAlignment="Center" Click="Add_Click"/>
+        <Button Content="Добавить соискателей" Height="55" Width="250" HorizontalAlignment="Right" FontSize="20" Margin="0 0 100 0" Grid.Row="1" VerticalAlignment="Center" Click="Add2_Click"/>
     </Grid>
 </Page>

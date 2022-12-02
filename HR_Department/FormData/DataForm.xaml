@@ -45,11 +45,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="1200">
-            <Button Name="Out" HorizontalAlignment="Center" Click="Out_Click" Margin="50 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Выход"/>
-            <Button Name="Admin" HorizontalAlignment="Center" Click="Admin_Click" Margin="50 0 0 0" VerticalAlignment="Center" Height="45" Width="190" Content="Вернуться к панели админа"/>
-            <Button Name="Del" HorizontalAlignment="Center" Click="Del_Click" Margin="450 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Удалить"/>
-            <Button Name="Add" HorizontalAlignment="Center" Click="Add_Click" Margin="50 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Добавить"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="60" Width="1230">
+            <Button Name="Out" HorizontalAlignment="Center" Click="Out_Click" Margin="50 0 0 0" VerticalAlignment="Center" Height="45" Width="90" Content="Выход" FontSize="20"/>
+            <Button Name="Admin" HorizontalAlignment="Center" Click="Admin_Click" Margin="50 0 0 0" VerticalAlignment="Center" Height="45" Width="345" Content="Вернуться к панели администратора" FontSize="20" Visibility="Hidden"/>
+            <Button Name="Del" HorizontalAlignment="Center" Click="Del_Click" Margin="400 0 0 0" VerticalAlignment="Center" Height="45" Width="100" Content="Удалить" FontSize="20"/>
+            <Button Name="Add" HorizontalAlignment="Center" Click="Add_Click" Margin="50 0 0 0" VerticalAlignment="Center" Height="45" Width="100" Content="Добавить" FontSize="20"/>
         </StackPanel>
     </Grid>
 </Page>

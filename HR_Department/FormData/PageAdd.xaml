@@ -25,6 +25,38 @@
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="200*"/>
         </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="0" Grid.Column="0"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="0" Grid.Column="1"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="0" Grid.Column="2"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="0" Grid.Column="3"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="1" Grid.Column="0"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="1" Grid.Column="1"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="1" Grid.Column="2"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="1" Grid.Column="3"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="2" Grid.Column="0"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="2" Grid.Column="1"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="2" Grid.Column="2"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="2" Grid.Column="3"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="3" Grid.Column="0"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="3" Grid.Column="1"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="3" Grid.Column="2"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="3" Grid.Column="3"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="4" Grid.Column="0"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="4" Grid.Column="1"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="4" Grid.Column="2"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="4" Grid.Column="3"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="5" Grid.Column="0"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="5" Grid.Column="1"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="5" Grid.Column="2"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="5" Grid.Column="3"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="6" Grid.Column="0"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="6" Grid.Column="1"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="6" Grid.Column="2"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="6" Grid.Column="3"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="7" Grid.Column="0"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="7" Grid.Column="1"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="7" Grid.Column="2"></Border>
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="7" Grid.Column="3"></Border>
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" FontWeight="Bold" FontSize="22" Content="Фамилия"/>
         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" FontWeight="Bold" FontSize="22" Content="Имя"/>
         <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" FontWeight="Bold" FontSize="22" Content="Отчество"/>
@@ -48,8 +80,8 @@
         <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Name" Text="{Binding Name_applicant}"/>
         <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Lastname" Text="{Binding Lastname_applicant}"/>
         <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="130" x:Name="Letter" Text="{Binding Cover_letter}"/>
-        <Button Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Height="46" Width="120" FontSize="20" FontWeight="Bold" Click="Out_Click" x:Name="Out"  Content="Выход"/>
-        <Button Grid.Column="3" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Height="45" Width="120" FontSize="20" FontWeight="Bold" Click="Sav_Click" x:Name="Sav"  Content="Сохранить"/>
+        <Button Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Height="46" Width="120" FontSize="20" Click="Out_Click" x:Name="Out"  Content="Выход"/>
+        <Button Grid.Column="3" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Height="45" Width="120" FontSize="20" Click="Sav_Click" x:Name="Sav"  Content="Сохранить"/>
         <ComboBox Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="300" FontSize="20" FontWeight="Bold" x:Name="Substation" SelectedItem="{Binding Substation.Name_substation}" DisplayMemberPath="Name_substation" SelectedValuePath="id_substation"/>
         <ComboBox Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="300" FontSize="20" FontWeight="Bold" x:Name="Result" SelectedItem="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" DisplayMemberPath="Name_the_result_of_the_meeting" SelectedValuePath="id_the_result_of_the_meeting"/>
         <ComboBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="300" FontSize="20" FontWeight="Bold" x:Name="Pos" SelectedItem="{Binding Post.Name_post}" DisplayMemberPath="Name_post" SelectedValuePath="id_post"/>

@@ -28,7 +28,7 @@
         <Label Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="76" FontWeight="Bold" FontSize="22" Content="Логин" Height="39"/>
         <Label Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="92" FontWeight="Bold" FontSize="22" Content="Пароль" Height="39"/>
         <Label Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="62" FontWeight="Bold" FontSize="22" Content="Роль" Height="39"/>
-        <Button Content="Сохранить" Grid.Column="2" Grid.Row="3" x:Name="Save" Click="Save_Click" Margin="50,46,50,46"/>
+        <Button Content="Сохранить" Grid.Column="2" Grid.Row="3" x:Name="Save" Click="Save_Click" Margin="50,46,50,46" Width="120" Height="45" FontSize="20"/>
         <TextBox Grid.Column="3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Surename" Text="{Binding Staff.Surename_staff}"/>
         <TextBox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Name" Text="{Binding Staff.Name_staff}"/>
         <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Lastname" Text="{Binding Staff.Lastname_staff}"/>

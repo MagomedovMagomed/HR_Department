@@ -59,7 +59,7 @@ namespace HR_Department.FormData
             role = roleA;
             if(role == 1)
             {
-                //Admin.Visibility = Visibility.Visible;
+                Admin.Visibility = Visibility.Visible;
             }
         }
 
@@ -67,21 +67,21 @@ namespace HR_Department.FormData
         {
             var CurrentAppl = ApplicantEntities2.GetContent().Applicant.ToList();
 
-            if (Filtr.SelectedIndex > 0)
+            if (Filtr.SelectedIndex > 0) //первый фильтр
             {
                 var test = Filtr.SelectedItem.ToString();
                 CurrentAppl = CurrentAppl.Where(p => p.Post.Name_post == Filtr.SelectedItem.ToString()).ToList();
             }
 
-            if (Filtr2.SelectedIndex > 0)
+            if (Filtr2.SelectedIndex > 0)//второй фильтр
             {
                 var test = Filtr2.SelectedItem.ToString();
                 CurrentAppl = CurrentAppl.Where(p => p.Name_applicant == Filtr.SelectedItem.ToString()).ToList();
             }
 
-            CurrentAppl = CurrentAppl.Where(p => p.Surename_applicant.ToLower().Contains(Search.Text.ToLower())).ToList();
+            CurrentAppl = CurrentAppl.Where(p => p.Surename_applicant.ToLower().Contains(Search.Text.ToLower())).ToList(); //поиск по фамилии
 
-            if (Sort.SelectedIndex == 2)
+            if (Sort.SelectedIndex == 2) //сортировка
             {
                 Applic.ItemsSource = CurrentAppl.OrderByDescending(p => p.Surename_applicant).ToList();
                 return;

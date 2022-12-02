@@ -31,7 +31,7 @@ namespace HR_Department.AdminPage
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (Visibility == Visibility.Visible)
+            if (Visibility == Visibility.Visible) // Обновление вывода пользователей и соискателей
             {
                 //Entities1.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 DBApp.ItemsSource = ApplicantEntities2.GetContent().Applicant.ToList();
