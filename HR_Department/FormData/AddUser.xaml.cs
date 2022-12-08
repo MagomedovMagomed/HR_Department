@@ -1,4 +1,5 @@
-﻿using HR_Department.ApplicationData;
+﻿using HR_Department.AdminPage;
+using HR_Department.ApplicationData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,14 +35,7 @@ namespace HR_Department.FormData
 
         private void Out_Click(object sender, RoutedEventArgs e)
         {
-            if (role == 1)
-            {
-                AppFrame.frameMain.Navigate(new PageAdmin());
-            }
-            else
-            {
-                AppFrame.frameMain.Navigate(new DataForm(role));
-            }
+             AppFrame.frameMain.Navigate(new PageAdmin());
         }
     }
 }
