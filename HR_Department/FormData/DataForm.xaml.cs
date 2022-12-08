@@ -43,9 +43,9 @@ namespace HR_Department.FormData
             {
                 Filtr.Items.Add(i.Name_post);
             }
-            foreach(var i in AppContent.Model1.Count_Interview)
+            foreach(var i in AppContent.Model1.Count_unterview)
             {
-                Filtr2.Items.Add(i.Name_Count_Interview);
+                Filtr2.Items.Add(i.Name_Count_interview);
             }
             Sort.Items.Add("Без сортировки");
             Sort.Items.Add("По возрастанию");
@@ -53,7 +53,7 @@ namespace HR_Department.FormData
             Sort.SelectedIndex = 0;
             Filtr.SelectedIndex = 0;
             Filtr2.SelectedIndex = 0;
-            var _currentAppl = ApplicantEntities2.GetContent().Applicant.ToList();
+            var _currentAppl = Entities.GetContent().Applicant.ToList();
             Applic.ItemsSource = _currentAppl;
             UpdateApplicant();
             role = roleA;
@@ -65,7 +65,7 @@ namespace HR_Department.FormData
 
         public void UpdateApplicant()
         {
-            var CurrentAppl = ApplicantEntities2.GetContent().Applicant.ToList();
+            var CurrentAppl = Entities.GetContent().Applicant.ToList();
 
             if (Filtr.SelectedIndex > 0) //первый фильтр
             {
@@ -118,11 +118,11 @@ namespace HR_Department.FormData
             {
                 try
                 {
-                    ApplicantEntities2.GetContent().Applicant.RemoveRange(ApplicantRemove);
-                    ApplicantEntities2.GetContent().SaveChanges();
+                    Entities.GetContent().Applicant.RemoveRange(ApplicantRemove);
+                    Entities.GetContent().SaveChanges();
                     MessageBox.Show("Данные удалены!");
 
-                    Applic.ItemsSource = ApplicantEntities2.GetContent().Applicant.ToList();
+                    Applic.ItemsSource = Entities.GetContent().Applicant.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -137,8 +137,8 @@ namespace HR_Department.FormData
         }   
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Функция находиться на доработке");
-            //AppFrame.frameMain.Navigate(new PageAdd((sender as Button).DataContext as Applicant));
+            //MessageBox.Show("Функция находиться на доработке");
+            AppFrame.frameMain.Navigate(new PageAdd((sender as Button).DataContext as Applicant, role));
         }
 
         private void Filtr2_SelectionChanged(object sender, SelectionChangedEventArgs e)

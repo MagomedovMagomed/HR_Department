@@ -8,6 +8,6 @@ namespace HR_Department.ApplicationData
 {
     class AppContent
     {
-        public static ApplicantEntities2 Model1;
+        public static Entities Model1;
     }
 }

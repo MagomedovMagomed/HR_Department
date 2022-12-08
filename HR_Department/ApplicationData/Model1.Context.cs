@@ -13,28 +13,28 @@ namespace HR_Department.ApplicationData
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ApplicantEntities2 : DbContext
+    public partial class Entities : DbContext
     {
-        public ApplicantEntities2()
-            : base("name=ApplicantEntities2")
+        public Entities()
+            : base("name=Entities")
         {
-        }
-    
-        private static ApplicantEntities2 _content;
-        public static ApplicantEntities2 GetContent()
-        {
-            if(_content == null)
-                _content = new ApplicantEntities2();
-            return _content;
         }
 
+        private static Entities _content;
+        public static Entities GetContent()
+        {
+            if(_content == null)
+                _content = new Entities();
+            return _content;
+        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Applicant> Applicant { get; set; }
-        public virtual DbSet<Count_Interview> Count_Interview { get; set; }
+        public virtual DbSet<Count_unterview> Count_unterview { get; set; }
         public virtual DbSet<Post> Post { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }

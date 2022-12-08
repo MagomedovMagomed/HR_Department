@@ -13,25 +13,25 @@
           <Property Name="Surename_applicant" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name_applicant" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Lastname_applicant" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Telephon" Type="varchar" MaxLength="50" />
-          <Property Name="SNILS" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telephon" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SNILS" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Date_of_the_interview" Type="date" Nullable="false" />
           <Property Name="Id_post" Type="int" Nullable="false" />
-          <Property Name="documents_education" Type="bit" />
-          <Property Name="Cover_letter" Type="nvarchar" MaxLength="255" />
-          <Property Name="Id_substation" Type="int" />
+          <Property Name="document_education" Type="bit" />
+          <Property Name="Cover_lettter" Type="nvarchar" MaxLength="255" />
+          <Property Name="Id_substation" Type="int" Nullable="false" />
           <Property Name="Note" Type="nvarchar" MaxLength="255" />
-          <Property Name="Id_the_result_of_the_meeting" Type="int" />
-          <Property Name="Where_by_whom_experience" Type="nvarchar" MaxLength="255" />
-          <Property Name="Id_Count_Interview" Type="int" />
+          <Property Name="Id_the_result_of_the_meeting" Type="int" Nullable="false" />
+          <Property Name="Where_by_whom_experience" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id_Count_interview" Type="int" />
         </EntityType>
-        <EntityType Name="Count_Interview">
+        <EntityType Name="Count_unterview">
           <Key>
-            <PropertyRef Name="Id_Count_Interview" />
+            <PropertyRef Name="Id_Count_interview" />
           </Key>
-          <Property Name="Id_Count_Interview" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name_Count_Interview" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_Count_interview" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name_Count_interview" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -89,20 +89,20 @@
           <Property Name="Id_role" Type="int" Nullable="false" />
           <Property Name="Id_staff" Type="int" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="User_status" Type="varchar" MaxLength="50" />
-          <Property Name="ID_TG" Type="varchar" MaxLength="50" />
-          <Property Name="Email_user" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="User_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_TG" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email_user" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Applicant_Count_Interview">
-          <End Role="Count_Interview" Type="Self.Count_Interview" Multiplicity="0..1" />
+        <Association Name="FK_Applicant_Count_unterview">
+          <End Role="Count_unterview" Type="Self.Count_unterview" Multiplicity="0..1" />
           <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Count_Interview">
-              <PropertyRef Name="Id_Count_Interview" />
+            <Principal Role="Count_unterview">
+              <PropertyRef Name="Id_Count_interview" />
             </Principal>
             <Dependent Role="Applicant">
-              <PropertyRef Name="Id_Count_Interview" />
+              <PropertyRef Name="Id_Count_interview" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -119,7 +119,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Applicant_Substation">
-          <End Role="Substation" Type="Self.Substation" Multiplicity="0..1" />
+          <End Role="Substation" Type="Self.Substation" Multiplicity="1" />
           <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Substation">
@@ -131,7 +131,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Applicant_The_result_of_the_meeting">
-          <End Role="The_result_of_the_meeting" Type="Self.The_result_of_the_meeting" Multiplicity="0..1" />
+          <End Role="The_result_of_the_meeting" Type="Self.The_result_of_the_meeting" Multiplicity="1" />
           <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="The_result_of_the_meeting">
@@ -180,7 +180,7 @@
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Applicant" EntityType="Self.Applicant" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Count_Interview" EntityType="Self.Count_Interview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Count_unterview" EntityType="Self.Count_unterview" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
@@ -188,8 +188,8 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="The_result_of_the_meeting" EntityType="Self.The_result_of_the_meeting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Applicant_Count_Interview" Association="Self.FK_Applicant_Count_Interview">
-            <End Role="Count_Interview" EntitySet="Count_Interview" />
+          <AssociationSet Name="FK_Applicant_Count_unterview" Association="Self.FK_Applicant_Count_unterview">
+            <End Role="Count_unterview" EntitySet="Count_unterview" />
             <End Role="Applicant" EntitySet="Applicant" />
           </AssociationSet>
           <AssociationSet Name="FK_Applicant_Post" Association="Self.FK_Applicant_Post">
@@ -230,30 +230,30 @@
           <Property Name="Surename_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Lastname_applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Telephon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SNILS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SNILS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date_of_the_interview" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Id_post" Type="Int32" Nullable="false" />
-          <Property Name="documents_education" Type="Boolean" />
-          <Property Name="Cover_letter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Id_substation" Type="Int32" />
+          <Property Name="document_education" Type="Boolean" />
+          <Property Name="Cover_lettter" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Id_substation" Type="Int32" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Id_the_result_of_the_meeting" Type="Int32" />
-          <Property Name="Where_by_whom_experience" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Id_Count_Interview" Type="Int32" />
-          <NavigationProperty Name="Count_Interview" Relationship="Self.FK_Applicant_Count_Interview" FromRole="Applicant" ToRole="Count_Interview" />
+          <Property Name="Id_the_result_of_the_meeting" Type="Int32" Nullable="false" />
+          <Property Name="Where_by_whom_experience" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Count_interview" Type="Int32" />
+          <NavigationProperty Name="Count_unterview" Relationship="Self.FK_Applicant_Count_unterview" FromRole="Applicant" ToRole="Count_unterview" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Applicant_Post" FromRole="Applicant" ToRole="Post" />
           <NavigationProperty Name="Substation" Relationship="Self.FK_Applicant_Substation" FromRole="Applicant" ToRole="Substation" />
           <NavigationProperty Name="The_result_of_the_meeting" Relationship="Self.FK_Applicant_The_result_of_the_meeting" FromRole="Applicant" ToRole="The_result_of_the_meeting" />
         </EntityType>
-        <EntityType Name="Count_Interview">
+        <EntityType Name="Count_unterview">
           <Key>
-            <PropertyRef Name="Id_Count_Interview" />
+            <PropertyRef Name="Id_Count_interview" />
           </Key>
-          <Property Name="Id_Count_Interview" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name_Count_Interview" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_Count_Interview" FromRole="Count_Interview" ToRole="Applicant" />
+          <Property Name="Id_Count_interview" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name_Count_interview" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Applicant" Relationship="Self.FK_Applicant_Count_unterview" FromRole="Count_unterview" ToRole="Applicant" />
         </EntityType>
         <EntityType Name="Post">
           <Key>
@@ -318,22 +318,22 @@
           <Property Name="Id_role" Type="Int32" Nullable="false" />
           <Property Name="Id_staff" Type="Int32" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="User_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ID_TG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email_user" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="User_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_TG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Staff" Relationship="Self.FK_User_Staff" FromRole="User" ToRole="Staff" />
         </EntityType>
-        <Association Name="FK_Applicant_Count_Interview">
-          <End Role="Count_Interview" Type="Self.Count_Interview" Multiplicity="0..1" />
+        <Association Name="FK_Applicant_Count_unterview">
+          <End Role="Count_unterview" Type="Self.Count_unterview" Multiplicity="0..1" />
           <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Count_Interview">
-              <PropertyRef Name="Id_Count_Interview" />
+            <Principal Role="Count_unterview">
+              <PropertyRef Name="Id_Count_interview" />
             </Principal>
             <Dependent Role="Applicant">
-              <PropertyRef Name="Id_Count_Interview" />
+              <PropertyRef Name="Id_Count_interview" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -350,7 +350,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Applicant_Substation">
-          <End Role="Substation" Type="Self.Substation" Multiplicity="0..1" />
+          <End Role="Substation" Type="Self.Substation" Multiplicity="1" />
           <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Substation">
@@ -362,7 +362,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Applicant_The_result_of_the_meeting">
-          <End Role="The_result_of_the_meeting" Type="Self.The_result_of_the_meeting" Multiplicity="0..1" />
+          <End Role="The_result_of_the_meeting" Type="Self.The_result_of_the_meeting" Multiplicity="1" />
           <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="The_result_of_the_meeting">
@@ -409,9 +409,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ApplicantEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Applicant" EntityType="Self.Applicant" />
-          <EntitySet Name="Count_Interview" EntityType="Self.Count_Interview" />
+          <EntitySet Name="Count_unterview" EntityType="Self.Count_unterview" />
           <EntitySet Name="Post" EntityType="Self.Post" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Staff" EntityType="Self.Staff" />
@@ -419,8 +419,8 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="The_result_of_the_meeting" EntityType="Self.The_result_of_the_meeting" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_Applicant_Count_Interview" Association="Self.FK_Applicant_Count_Interview">
-            <End Role="Count_Interview" EntitySet="Count_Interview" />
+          <AssociationSet Name="FK_Applicant_Count_unterview" Association="Self.FK_Applicant_Count_unterview">
+            <End Role="Count_unterview" EntitySet="Count_unterview" />
             <End Role="Applicant" EntitySet="Applicant" />
           </AssociationSet>
           <AssociationSet Name="FK_Applicant_Post" Association="Self.FK_Applicant_Post">
@@ -453,7 +453,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="ApplicantEntities2">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Applicant">
             <EntityTypeMapping TypeName="Model.Applicant">
               <MappingFragment StoreEntitySet="Applicant">
@@ -466,21 +466,21 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Date_of_the_interview" ColumnName="Date_of_the_interview" />
                 <ScalarProperty Name="Id_post" ColumnName="Id_post" />
-                <ScalarProperty Name="documents_education" ColumnName="documents_education" />
-                <ScalarProperty Name="Cover_letter" ColumnName="Cover_letter" />
+                <ScalarProperty Name="document_education" ColumnName="document_education" />
+                <ScalarProperty Name="Cover_lettter" ColumnName="Cover_lettter" />
                 <ScalarProperty Name="Id_substation" ColumnName="Id_substation" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="Id_the_result_of_the_meeting" ColumnName="Id_the_result_of_the_meeting" />
                 <ScalarProperty Name="Where_by_whom_experience" ColumnName="Where_by_whom_experience" />
-                <ScalarProperty Name="Id_Count_Interview" ColumnName="Id_Count_Interview" />
+                <ScalarProperty Name="Id_Count_interview" ColumnName="Id_Count_interview" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Count_Interview">
-            <EntityTypeMapping TypeName="Model.Count_Interview">
-              <MappingFragment StoreEntitySet="Count_Interview">
-                <ScalarProperty Name="Id_Count_Interview" ColumnName="Id_Count_Interview" />
-                <ScalarProperty Name="Name_Count_Interview" ColumnName="Name_Count_Interview" />
+          <EntitySetMapping Name="Count_unterview">
+            <EntityTypeMapping TypeName="Model.Count_unterview">
+              <MappingFragment StoreEntitySet="Count_unterview">
+                <ScalarProperty Name="Id_Count_interview" ColumnName="Id_Count_interview" />
+                <ScalarProperty Name="Name_Count_interview" ColumnName="Name_Count_interview" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

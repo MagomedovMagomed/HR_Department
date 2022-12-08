@@ -32,37 +32,41 @@ namespace HR_Department.FormData
             if (appapp != null)
             {
                 _currentApp = appapp;
+                Interview.Text = appapp.Date_of_the_interview.ToString();
             }
             DataContext = _currentApp;
 
-            Substation.ItemsSource = ApplicantEntities2.GetContent().Substation.ToList(); // Вывод списка подстанций
-            Pos.ItemsSource = ApplicantEntities2.GetContent().Post.ToList(); // Вывод списка должностей
-            Result.ItemsSource = ApplicantEntities2.GetContent().The_result_of_the_meeting.ToList(); // Вывод списка результатов встречи
+            Substation.ItemsSource = Entities.GetContent().Substation.ToList(); // Вывод списка подстанций
+            Pos.ItemsSource = Entities.GetContent().Post.ToList(); // Вывод списка должностей
+            Result.ItemsSource = Entities.GetContent().The_result_of_the_meeting.ToList(); // Вывод списка результатов встречи
             role = roleA;
-            SendMessage("Добавлен новый пользователь");
+            Pos.Text = appapp.Post.Name_post;
+            Substation.Text = appapp.Substation.Name_substation;
+            Result.Text = appapp.The_result_of_the_meeting.Name_the_result_of_the_meeting;
+            //SendMessage("Добавлен новый пользователь");
         }
 
-        public void SendMessage(string message) // отправка сообщения телеграмм
-        {
-            string retval = string.Empty;
-            string token = "5407916923:AAGEa-Y_-bZgf-vrkzuv-u4a-04RitSJXW8";
-            string chatId;
+        //public void SendMessage(string message) // отправка сообщения телеграмм
+        //{
+        //    string retval = string.Empty;
+        //    string token = "5407916923:AAGEa-Y_-bZgf-vrkzuv-u4a-04RitSJXW8";
+        //    string chatId;
 
 
-            foreach (var i in AppContent.Model1.User)
-            {
-                chatId = i.ID_TG;
-                if (chatId != null)
-                {
-                    string url = $"https://api.telegram.org/bot{token}/sendMessage?chat_id={chatId}&text={message}";
+        //    foreach (var i in AppContent.Model1.User)
+        //    {
+        //        chatId = i.ID_TG;
+        //        if (chatId != null)
+        //        {
+        //            string url = $"https://api.telegram.org/bot{token}/sendMessage?chat_id={chatId}&text={message}";
 
-                    using (var webClient = new WebClient())
-                    {
-                        retval = webClient.DownloadString(url);
-                    }
-                }
-            }
-        }
+        //            using (var webClient = new WebClient())
+        //            {
+        //                retval = webClient.DownloadString(url);
+        //            }
+        //        }
+        //    }
+        //}
 
         private void Sav_Click(object sender, RoutedEventArgs e)
         {
@@ -136,26 +140,29 @@ namespace HR_Department.FormData
                     Email = Email.Text,
                     Date_of_the_interview = Interview.DisplayDate,
                     Id_post = id_pos,
-                    documents_education = Document.IsChecked,
-                    Cover_letter = Letter.Text,
+                    document_education = (bool)Document.IsChecked,
+                    Cover_lettter = Letter.Text,
                     Id_substation = id_sub,
                     Note = Note.Text,
                     Id_the_result_of_the_meeting = id_rm,
-                    Where_by_whom_experience = Expirence.Text
+                    Where_by_whom_experience = Expirence.Text,
+                    Id_Count_interview = 1 
                 };
                 ////AppFrame.frameMain.Navigate(new DataForm());
                 if (_currentApp.Id_applicant == 0)
-                    ApplicantEntities2.GetContent().Applicant.Add(_currentApp);
+                    Entities.GetContent().Applicant.Add(_currentApp);
                 try
                 {
                     _currentApp.Id_post = id_pos;
                     _currentApp.Id_the_result_of_the_meeting = id_rm;
                     _currentApp.Id_substation = id_sub;
+                    _currentApp.Id_Count_interview = 1;
 
                     AppContent.Model1.Applicant.Add(appobj);
-                    AppContent.Model1.SaveChanges();
+                    //AppContent.Model1.SaveChanges();
+                    Entities.GetContent().SaveChanges();
                     MessageBox.Show("Информация сохранена!");
-                    //ApplicantEntities2.GetContext().SaveChanges();
+                    
                     //MessageBox.Show("Информация сохранена!");
                 }
                 catch (Exception ex)
@@ -175,7 +182,7 @@ namespace HR_Department.FormData
             {
                 AppFrame.frameMain.Navigate(new PageAdmin());
             }
-            if(role == 3)
+            else
             {
                 AppFrame.frameMain.Navigate(new DataForm(role));
             }

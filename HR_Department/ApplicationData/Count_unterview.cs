@@ -12,16 +12,16 @@ namespace HR_Department.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class Count_Interview
+    public partial class Count_unterview
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Count_Interview()
+        public Count_unterview()
         {
             this.Applicant = new HashSet<Applicant>();
         }
     
-        public int Id_Count_Interview { get; set; }
-        public string Name_Count_Interview { get; set; }
+        public int Id_Count_interview { get; set; }
+        public string Name_Count_interview { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Applicant> Applicant { get; set; }

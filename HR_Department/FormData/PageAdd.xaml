@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HR_Department.FormData"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1300"
+      d:DesignHeight="700" d:DesignWidth="1200"
       Title="PageAdd">
 
     <Grid Background="White">
@@ -71,22 +71,22 @@
         <Label Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" FontWeight="Bold" FontSize="22" Content="Результаты встречи"></Label>
         <Label Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" FontWeight="Bold" FontSize="22" Content="Подстанция" ></Label>
         <Label Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" FontWeight="Bold" FontSize="22" Content="Стаж Кем? Где? Сколько?"></Label>
-        <TextBox Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Telephon" Text="{Binding Telephon}"/>
-        <TextBox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="SNILS" Text="{Binding SNILS}"/>
-        <TextBox Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Expirence" Text="{Binding Where_by_whom_experience}"/>
-        <TextBox Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Email" Text="{Binding Email}"/>
-        <TextBox Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="130" x:Name="Note" Text="{Binding Note}"/>
-        <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Surename" Text="{Binding Surename_applicant}"/>
-        <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Name" Text="{Binding Name_applicant}"/>
-        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="35" x:Name="Lastname" Text="{Binding Lastname_applicant}"/>
-        <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Height="130" x:Name="Letter" Text="{Binding Cover_letter}"/>
+        <TextBox Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="35" x:Name="Telephon" Text="{Binding Telephon}"/>
+        <TextBox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="35" x:Name="SNILS" Text="{Binding SNILS}"/>
+        <TextBox Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="35" x:Name="Expirence" Text="{Binding Where_by_whom_experience}"/>
+        <TextBox Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="35" x:Name="Email" Text="{Binding Email}"/>
+        <TextBox Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="110" x:Name="Note" Text="{Binding Note}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="35" x:Name="Surename" Text="{Binding Surename_applicant}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="35" x:Name="Name" Text="{Binding Name_applicant}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="35" x:Name="Lastname" Text="{Binding Lastname_applicant}"/>
+        <TextBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="110" x:Name="Letter" Text="{Binding Cover_letter}"/>
         <Button Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Height="46" Width="120" FontSize="20" Click="Out_Click" x:Name="Out"  Content="Выход"/>
         <Button Grid.Column="3" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Height="45" Width="120" FontSize="20" Click="Sav_Click" x:Name="Sav"  Content="Сохранить"/>
-        <ComboBox Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="300" FontSize="20" FontWeight="Bold" x:Name="Substation" SelectedItem="{Binding Substation.Name_substation}" DisplayMemberPath="Name_substation" SelectedValuePath="id_substation"/>
-        <ComboBox Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="300" FontSize="20" FontWeight="Bold" x:Name="Result" SelectedItem="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" DisplayMemberPath="Name_the_result_of_the_meeting" SelectedValuePath="id_the_result_of_the_meeting"/>
-        <ComboBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="300" FontSize="20" FontWeight="Bold" x:Name="Pos" SelectedItem="{Binding Post.Name_post}" DisplayMemberPath="Name_post" SelectedValuePath="id_post"/>
-        <DatePicker Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="300" FontSize="20" FontWeight="Bold" x:Name="Interview"/>
-        <CheckBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Width="150" Height="20" FontSize="13" VerticalAlignment="Center" x:Name="Document" Content="Проверены" Padding="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+        <ComboBox Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="250" FontSize="20" FontWeight="Bold" x:Name="Substation" SelectedItem="{Binding Substation.Name_substation}" DisplayMemberPath="Name_substation" SelectedValuePath="id_substation"/>
+        <ComboBox Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="250" FontSize="20" FontWeight="Bold" x:Name="Result" SelectedItem="{Binding The_result_of_the_meeting.Name_the_result_of_the_meeting}" DisplayMemberPath="Name_the_result_of_the_meeting" SelectedValuePath="id_the_result_of_the_meeting"/>
+        <ComboBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Height="35" Width="250" FontSize="20" FontWeight="Bold" x:Name="Pos" SelectedItem="{Binding Post.Name_post}" DisplayMemberPath="Name_post" SelectedValuePath="id_post"/>
+        <DatePicker Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="250" FontSize="20" FontWeight="Bold" x:Name="Interview"/>
+        <CheckBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Width="130" Height="20" FontSize="13" VerticalAlignment="Center" x:Name="Document" Content="Проверены" Padding="0,0,0,0" RenderTransformOrigin="0.5,0.5">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="2" ScaleY="2"/>

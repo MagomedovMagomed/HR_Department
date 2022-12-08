@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3ebf1e34db3b4ad6a16f57cf7f557b87" Name="Diagram1">
+      <Diagram DiagramId="906b1b1840084b7ca06f29a7fabf9192" Name="Diagram1">
         <EntityTypeShape EntityType="Model.Applicant" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Count_Interview" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Count_unterview" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Post" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Role" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Staff" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.The_result_of_the_meeting" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK_Applicant_Count_Interview" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Applicant_Count_unterview" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Applicant_Post" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Applicant_Substation" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Applicant_The_result_of_the_meeting" ManuallyRouted="false" />

@@ -34,8 +34,8 @@ namespace HR_Department.AdminPage
             if (Visibility == Visibility.Visible) // Обновление вывода пользователей и соискателей
             {
                 //Entities1.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                DBApp.ItemsSource = ApplicantEntities2.GetContent().Applicant.ToList();
-                DBUser.ItemsSource = ApplicantEntities2.GetContent().User.ToList();
+                DBApp.ItemsSource = Entities.GetContent().Applicant.ToList();
+                DBUser.ItemsSource = Entities.GetContent().User.ToList();
             }
         }
 
