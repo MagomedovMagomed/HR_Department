@@ -31,5 +31,17 @@ namespace HR_Department.FormData
         {
 
         }
+
+        private void Out_Click(object sender, RoutedEventArgs e)
+        {
+            if (role == 1)
+            {
+                AppFrame.frameMain.Navigate(new PageAdmin());
+            }
+            else
+            {
+                AppFrame.frameMain.Navigate(new DataForm(role));
+            }
+        }
     }
 }

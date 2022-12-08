@@ -36,5 +36,6 @@
         <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="35" DisplayMemberPath="Surename_staff" SelectedValuePath="id_post"/>
         <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="35" DisplayMemberPath="Name_post" SelectedValuePath="id_post"/>
         <ComboBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="35" DisplayMemberPath="Name_role" SelectedValuePath="id_post"/>
+        <Button Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Height="46" Width="120" FontSize="20" Click="Out_Click" x:Name="Out"  Content="Выход" Margin="0,59,0,0"/>
     </Grid>
 </Page>
